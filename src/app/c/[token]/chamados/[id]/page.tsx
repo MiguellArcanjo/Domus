@@ -1,3 +1,4 @@
+import { LinkInvalido } from '@/components/views/LinkInvalido'
 import { notFound } from 'next/navigation'
 import { Mail, Star } from 'lucide-react'
 import { Avatar } from '@/components/ui/Avatar'
@@ -19,6 +20,7 @@ export function generateStaticParams() {
 /** Andamento do chamado, como o inquilino vê. Sem valores. */
 export default async function ChamadoInquilino({ params, searchParams }: Props) {
   const { token, id } = await params
+  if (token !== 'demo') return <LinkInvalido />
   const { novo } = await searchParams
   const c = chamado(id)
   if (!c) notFound()

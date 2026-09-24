@@ -22,7 +22,7 @@ export function CriarContaForm() {
       setErro('As senhas não são iguais. Digite a mesma senha nos dois campos.')
       return
     }
-    router.push(`/entrar/perfil${query ? `?${query}` : ''}`)
+    router.push(`/confirmar-email?email=${encodeURIComponent(String(f.get('email')))}${query ? `&${query}` : ''}`)
   }
 
   return (
@@ -37,7 +37,7 @@ export function CriarContaForm() {
         <PasswordInput id="confirmar" label="Confirme a senha" autoComplete="new-password" minLength={8} />
         <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13 }}>
           <input type="checkbox" name="termos" required style={{ width: 20, height: 20, marginTop: 1, accentColor: 'var(--brand)' }} />
-          <span>Li e aceito os <Link href="/#confianca" style={{ textDecoration: 'underline' }}>Termos de uso</Link> e a <Link href="/#confianca" style={{ textDecoration: 'underline' }}>Política de Privacidade</Link> (LGPD).</span>
+          <span>Li e aceito os <Link href="/termos" style={{ textDecoration: 'underline' }}>Termos de uso</Link> e a <Link href="/privacidade" style={{ textDecoration: 'underline' }}>Política de Privacidade</Link> (LGPD).</span>
         </label>
         {erro && <p role="alert" style={{ color: 'var(--danger)', fontSize: 14 }}>{erro}</p>}
         <Button type="submit" variant="primary" block>Criar conta</Button>

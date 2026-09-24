@@ -9,8 +9,10 @@ import { Row, Stack } from '@/components/ui/Stack'
 import { TabPanels } from '@/components/ui/Tabs'
 import { Depoimento, Disponibilidade, NomeVerificado, PriceList, RatingPill } from '@/components/domain/Prestador'
 import { ShareButton } from '@/components/domain/ShareButton'
+import { FollowButton, SaveButton } from '@/components/domain/SaveButton'
 import { BackBar, StickyActions } from '@/components/layout/PageHeader'
 import { POSTS, PRESTADORES, prestador } from '@/lib/mock'
+import { Avaliacoes } from '@/components/domain/Avaliacoes'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -30,11 +32,11 @@ export default async function PerfilPrestador({ params }: Props) {
   return (
     <Stack gap={4} style={{ maxWidth: 720 }}>
       <BackBar title="Perfil" back="/app/explorar" />
-      <Row between start><Avatar iniciais={p.iniciais} size={72} /><RatingPill p={p} /></Row>
+      <Row between start><Avatar iniciais={p.iniciais} size={72} /><Row gap={2}><RatingPill p={p} /><SaveButton id={p.slug} tipo="prestadores" label={p.nome} /></Row></Row>
       <div style={{ display: 'grid', gap: 6 }}>
         <h2><NomeVerificado p={p} size={24} /></h2>
         <p style={{ color: 'var(--ink-muted)' }}>{p.oficio} · {p.bairro} · atende até {p.raioKm} km</p>
-        <Row wrap gap={2}><Disponibilidade p={p} />{p.verificado && <Selo tipo="prestador" />}</Row>
+        <Row wrap gap={2}><Disponibilidade p={p} />{p.verificado && <Selo tipo="prestador" />}<FollowButton slug={p.slug} nome={p.nome.split(' ')[0]} /></Row>
       </div>
       <Depoimento p={p} />
       <TabPanels label="Seções do perfil" tabs={['Preços', 'Portfólio', 'Avaliações']}>
@@ -43,7 +45,7 @@ export default async function PerfilPrestador({ params }: Props) {
           <div key="portfolio" style={{ display: 'grid', gap: 6, gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
             {posts.map((po) => <Link key={po.id} href={`/app/post/${po.id}`}><Photo legenda={po.fotoLegenda} height={110} radius={10} /></Link>)}
           </div>,
-          <p key="avaliacoes" style={{ color: 'var(--ink-muted)' }}>{p.avaliacoes} avaliações de quem contratou pelo app. Nota média {p.nota.toLocaleString('pt-BR')}.</p>,
+          <Avaliacoes key="avaliacoes" p={p} />,
         ]}
       </TabPanels>
       <ShareButton titulo={`${p.nome} no Domu`} label="Compartilhar perfil" />

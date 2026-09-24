@@ -1,3 +1,4 @@
+import { LinkInvalido } from '@/components/views/LinkInvalido'
 import { AbrirChamadoForm } from '@/components/views/AbrirChamadoForm'
 
 type Props = { params: Promise<{ token: string }> }
@@ -7,5 +8,7 @@ export function generateStaticParams() {
 }
 
 export default async function AbrirChamado({ params }: Props) {
-  return <AbrirChamadoForm token={(await params).token} />
+  const { token } = await params
+  if (token !== 'demo') return <LinkInvalido />
+  return <AbrirChamadoForm token={token} />
 }

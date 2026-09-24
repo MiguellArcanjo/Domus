@@ -5,7 +5,7 @@ import s from './SiteChrome.module.css'
 const COLUNAS = [
   { titulo: 'Produto', links: [['Para corretores', '/para-corretores'], ['Para prestadores', '/para-prestadores'], ['Encontrar prestador', '/servicos/encanador/sao-paulo'], ['Preços', '/para-corretores#planos']] },
   { titulo: 'Serviços', links: [['Encanador', '/servicos/encanador/sao-paulo'], ['Eletricista', '/servicos/eletricista/sao-paulo'], ['Pintor', '/servicos/pintor/sao-paulo'], ['Diarista', '/servicos/diarista/sao-paulo']] },
-  { titulo: 'Domu', links: [['Como funciona', '/#como-funciona'], ['Pagamento protegido', '/#confianca'], ['Privacidade (LGPD)', '/#confianca'], ['Entrar', '/entrar']] },
+  { titulo: 'Domu', links: [['Como funciona', '/#como-funciona'], ['Ajuda', '/ajuda'], ['Termos de uso', '/termos'], ['Privacidade (LGPD)', '/privacidade'], ['Entrar', '/entrar']] },
 ]
 
 export function SiteFooter() {

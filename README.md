@@ -21,7 +21,7 @@ npm run dev        # http://localhost:3000
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript sem gerar arquivos |
 
-Para ver o app de cada perfil, entre por `/entrar` (qualquer e-mail e senha funcionam) e escolha **corretor**, **prestador** ou **cliente**. O perfil pode ser trocado em Perfil.
+Para ver o app de cada perfil, entre por `/entrar` (qualquer e-mail e senha funcionam) e escolha **corretor**, **prestador** ou **cliente**. O perfil pode ser trocado em Perfil. A área da operação fica em `/admin` e o link de exemplo do inquilino em `/c/demo`.
 
 ## Onde está cada coisa
 
@@ -34,6 +34,7 @@ src/
                      /entrar/perfil, /boas-vindas
     app/             app web logado (/app/...), por perfil
     c/[token]/       link do inquilino, sem login
+    admin/           área interna da operação (curadoria, moderação, disputas, catálogo, usuários)
   components/
     ui/              primitivos: Button, Badge, Chip, Card, Field, Tabs, Steps...
     domain/          componentes do negócio: PostCard, ChamadoCard, PrestadorCard, Kpi...

@@ -17,7 +17,7 @@ export function PostCard({ post, href, compact }: { post: Post; href: string; co
       <div className={s.postMedia}>
         <Photo legenda={post.fotoLegenda} height={compact ? 150 : 190} />
         <div className={s.postBadge}>{post.destaque ? <Badge tone="accent">Destaque</Badge> : post.verificado ? <Selo /> : null}</div>
-        <div className={s.postSave}><SaveButton label={post.titulo} /></div>
+        <div className={s.postSave}><SaveButton id={post.id} tipo="posts" label={post.titulo} /></div>
       </div>
       <Link href={href} className={s.postBody}>
         <div className={s.postTop}>

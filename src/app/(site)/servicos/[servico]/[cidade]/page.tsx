@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Chip, ChipRow } from '@/components/ui/Chip'
 import { Eyebrow } from '@/components/ui/Meta'
-import { PrestadorCard } from '@/components/domain/Prestador'
+import { BuscaPublicaLista } from '@/components/site/BuscaPublicaLista'
 import { MapaBusca } from '@/components/site/MapaBusca'
 import { Section, siteStyles as s } from '@/components/site/Section'
 import { CATEGORIAS, CATEGORIA_IDS, categoriaPorSlug } from '@/lib/categorias'
@@ -38,9 +38,7 @@ export default async function BuscaPublica({ params }: Props) {
           </nav>
           <h1 style={{ fontSize: 'clamp(32px, 4vw, 44px)', lineHeight: 1.05, letterSpacing: '-0.03em' }}>{CATEGORIAS[cat].oficio} em {CIDADE}</h1>
           <p style={{ color: 'var(--ink-muted)', fontSize: 16 }}>Prestadores verificados perto de você, com preço antes de contratar e pagamento protegido.</p>
-          <ChipRow label="Filtros"><Chip selected>Hoje</Chip><Chip>Verificados</Chip><Chip dropdown>Preço</Chip><Chip>Nota 4,5+</Chip><Chip dropdown>Bairro</Chip></ChipRow>
-          {lista.map((p) => <PrestadorCard key={p.slug} p={p} href={`/p/${p.slug}`} ctaHref={`/entrar?proximo=/app/contratar/${p.slug}`} />)}
-          {lista.length === 0 && <p>Ainda não temos {CATEGORIAS[cat].oficio.toLowerCase()} verificado aqui. Veja outros serviços abaixo.</p>}
+          <BuscaPublicaLista categoria={cat} />
           {itens.length > 0 && (
             <>
               <Eyebrow as="h2">Preços em {CIDADE}</Eyebrow>

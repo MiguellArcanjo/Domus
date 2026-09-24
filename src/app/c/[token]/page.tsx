@@ -6,6 +6,7 @@ import { Eyebrow } from '@/components/ui/Meta'
 import { Row, Stack } from '@/components/ui/Stack'
 import { CategoriaIcon } from '@/components/domain/CategoriaIcon'
 import { reais } from '@/lib/format'
+import { LinkInvalido } from '@/components/views/LinkInvalido'
 import { CHAMADOS, USUARIO, imovel } from '@/lib/mock'
 
 type Props = { params: Promise<{ token: string }> }
@@ -17,6 +18,7 @@ export function generateStaticParams() {
 /** Início do link do inquilino (G-04). Sem login: o token no link identifica o contrato. */
 export default async function LinkInquilino({ params }: Props) {
   const { token } = await params
+  if (token !== 'demo') return <LinkInvalido />
   const im = imovel('ap-32-acacias')!
   const chamados = CHAMADOS.filter((c) => c.imovelId === im.id && c.estado !== 'pago')
   return (

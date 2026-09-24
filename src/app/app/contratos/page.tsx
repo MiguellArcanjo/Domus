@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Card } from '@/components/ui/Card'
 import { Row, Stack } from '@/components/ui/Stack'
 import { PageHeader } from '@/components/layout/PageHeader'
+import { Button } from '@/components/ui/Button'
 import { reais } from '@/lib/format'
 import { IMOVEIS } from '@/lib/mock'
 
@@ -14,9 +15,9 @@ export default function Contratos() {
   const lista = IMOVEIS.filter((i) => i.contrato)
   return (
     <Stack gap={3}>
-      <PageHeader title="Contratos" subtitle="Alertas 60 e 30 dias antes do vencimento e do reajuste" />
+      <PageHeader title="Contratos" subtitle="Alertas 60 e 30 dias antes do vencimento e do reajuste" actions={<Button variant="primary" size="sm" href="/app/contratos/novo">Novo contrato</Button>} />
       {lista.map((i) => (
-        <Card key={i.id} href={`/app/imoveis/${i.id}`}>
+        <Card key={i.id} href={`/app/contratos/${i.id}`}>
           <Row gap={3} start>
             <FileText size={20} color="var(--brand)" aria-hidden />
             <div style={{ flexGrow: 1, display: 'grid', gap: 2 }}>

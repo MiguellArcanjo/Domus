@@ -5,6 +5,7 @@ import { ChevronLeft } from 'lucide-react'
 import { IconButton } from '@/components/ui/IconButton'
 import { PerfilOpcao } from '@/components/layout/PerfilOpcao'
 import { usePerfil } from '@/components/layout/PerfilProvider'
+import { useLocal } from '@/lib/store'
 import { INICIO } from '@/lib/nav'
 import type { Perfil } from '@/lib/types'
 
@@ -12,11 +13,13 @@ export function EscolherPerfil() {
   const router = useRouter()
   const params = useSearchParams()
   const { setPerfil } = usePerfil()
+  const [prestadorCadastrado] = useLocal('prestadorCadastrado', false)
   const sugerido = params.get('perfil')
   const proximo = params.get('proximo')
 
   function escolher(p: Perfil) {
     setPerfil(p)
+    if (p === 'prestador' && !prestadorCadastrado) return router.push('/app/cadastro-prestador')
     router.push(proximo && proximo.startsWith('/app') ? proximo : INICIO[p])
   }
 

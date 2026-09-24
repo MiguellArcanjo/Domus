@@ -37,7 +37,7 @@ export default async function PostApp({ params }: Props) {
     <Stack gap={4} style={{ maxWidth: 720 }}>
       <Photo legenda={`${po.fotoLegenda} (arraste para ver mais)`} height={320}>
         <span style={{ position: 'absolute', top: 12, left: 12 }}><IconButton icon={ChevronLeft} label="Voltar" href="/app/explorar" /></span>
-        <span style={{ position: 'absolute', top: 12, right: 12 }}><SaveButton label={po.titulo} /></span>
+        <span style={{ position: 'absolute', top: 12, right: 12 }}><SaveButton id={po.id} tipo="posts" label={po.titulo} /></span>
         {po.verificado && <span style={{ position: 'absolute', bottom: 12, left: 12 }}><Selo /></span>}
       </Photo>
       <h1 style={{ fontSize: 24, lineHeight: 1.2 }}>{po.titulo}</h1>
@@ -50,7 +50,7 @@ export default async function PostApp({ params }: Props) {
       <SocialProof><b>{po.curtidas} vizinhos</b> curtiram · {p.disponibilidade === 'hoje' ? '2 horários livres hoje' : p.proximoHorario}</SocialProof>
       <p style={{ fontSize: 15 }}>{po.descricao}</p>
       <Row wrap gap={2}><Badge icon={CATEGORIAS[po.categoria].icone}>{CATEGORIAS[po.categoria].rotulo}</Badge>{po.verificado && <Badge tone="success">Garantia de 90 dias</Badge>}</Row>
-      <Row gap={2}><ShareButton titulo={po.titulo} /><Button variant="ghost">Ver {po.comentarios} comentários</Button></Row>
+      <Row wrap gap={2}><ShareButton titulo={po.titulo} /><Button variant="ghost" href={`/app/post/${po.id}/comentarios`}>Ver {po.comentarios} comentários</Button><Button variant="ghost" href={`/app/post/${po.id}/denunciar`}>Denunciar</Button></Row>
       <StickyActions info={{ label: 'Preço do serviço', valor: reais(po.preco) }}>
         <Button variant="primary" href={`/app/contratar/${p.slug}?post=${po.id}`}>Quero um serviço assim</Button>
       </StickyActions>

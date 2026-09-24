@@ -1,15 +1,14 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Bell, FileText, Plus, Repeat, Send, TriangleAlert } from 'lucide-react'
 import { Avatar } from '@/components/ui/Avatar'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
-import { Chip } from '@/components/ui/Chip'
 import { IconButton } from '@/components/ui/IconButton'
 import { Row, Stack } from '@/components/ui/Stack'
 import { Title, TextLink } from '@/components/ui/Text'
 import { ChamadoCard } from '@/components/domain/ChamadoCard'
-import { BarChart, KpiCard, StatCard } from '@/components/domain/Kpi'
+import { KpiCard, StatCard } from '@/components/domain/Kpi'
+import { PeriodChart } from '@/components/domain/PeriodChart'
 import { DesktopOnly, MobileOnly, Panel, Split } from '@/components/patterns/Responsive'
 import { ChamadosTabela } from '@/components/views/ChamadosTabela'
 import { reais } from '@/lib/format'
@@ -32,7 +31,7 @@ export default function Painel() {
         <IconButton icon={Bell} label="Notificações" href="/app/notificacoes" dot />
       </Row>
 
-      <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(96px, 1fr))' }}>
+      <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
         <div style={{ gridColumn: '1 / -1' }}>
           <KpiCard mes={RESUMO_MES.mes} valor={RESUMO_MES.aReceber} pagos={RESUMO_MES.pagos} total={RESUMO_MES.total} emAtraso={RESUMO_MES.emAtraso} />
         </div>
@@ -65,8 +64,7 @@ export default function Painel() {
 
       <Split>
         <Panel label="Recebido por mês">
-          <Row between><Title level={2}>Recebido por mês</Title><Chip dropdown>6 meses</Chip></Row>
-          <BarChart label="Aluguel recebido nos últimos 6 meses" dados={RESUMO_MES.recebidoPorMes.map((m) => ({ rotulo: m.mes, valor: m.valor }))} />
+          <PeriodChart titulo="Recebido por mês" label="Aluguel recebido por mês" dados={RESUMO_MES.recebidoPorMes.map((m) => ({ rotulo: m.mes, valor: m.valor }))} periodos={[{ value: '3', label: '3 meses', n: 3 }, { value: '6', label: '6 meses', n: 6 }]} />
         </Panel>
         <Panel label="Ações rápidas">
           <Title level={2}>Ações rápidas</Title>
@@ -75,7 +73,13 @@ export default function Painel() {
             <Button icon={Send} href="/app/imoveis/ap-32-acacias/link">Enviar link ao inquilino</Button>
             <Button href="/app/explorar">Encontrar prestador</Button>
           </Row>
-          <Link href="/app/contratos" style={{ fontSize: 14, color: 'var(--brand)', fontWeight: 600 }}>Ver contratos</Link>
+          <Row wrap gap={2}>
+            <Button size="sm" variant="ghost" href="/app/financeiro">Financeiro</Button>
+            <Button size="sm" variant="ghost" href="/app/contratos">Contratos</Button>
+            <Button size="sm" variant="ghost" href="/app/reajustes">Reajustes</Button>
+            <Button size="sm" variant="ghost" href="/app/vistorias">Vistorias</Button>
+            <Button size="sm" variant="ghost" href="/app/meus-prestadores">Meus prestadores</Button>
+          </Row>
         </Panel>
       </Split>
     </Stack>

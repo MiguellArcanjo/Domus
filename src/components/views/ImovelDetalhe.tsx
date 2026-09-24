@@ -20,7 +20,7 @@ export function ImovelDetalhe({ imovel: i }: { imovel: Imovel }) {
   return (
     <Stack gap={4}>
       <Photo legenda={`Galeria de ${i.nome}`} height={220}>
-        <span style={{ position: 'absolute', top: 12, right: 12 }}><IconButton icon={Pencil} label="Editar imóvel" href="/app/imoveis/novo" /></span>
+        <span style={{ position: 'absolute', top: 12, right: 12 }}><IconButton icon={Pencil} label="Editar imóvel" href={`/app/imoveis/${i.id}/editar`} /></span>
       </Photo>
       <Row between start>
         <div style={{ display: 'grid', gap: 4 }}>
@@ -44,11 +44,12 @@ export function ImovelDetalhe({ imovel: i }: { imovel: Imovel }) {
               {i.alerta && <Card tone="warning"><b style={{ fontSize: 14 }}>{i.alerta}</b></Card>}
               <Row wrap gap={2}>
                 <Button icon={Send} href={`/app/imoveis/${i.id}/link`}>Enviar link ao inquilino</Button>
-                <Button href="/app/contratos">Ver contrato</Button>
+                <Button href={`/app/contratos/${i.id}`}>Ver contrato</Button>
+                <Button href={`/app/vistorias?imovel=${i.id}`}>Vistorias</Button>
               </Row>
             </Stack>
           ) : (
-            <Card key="contrato"><p>Imóvel vago. Cadastre um contrato para enviar o link ao inquilino.</p><Button variant="primary" href="/app/imoveis/novo?etapa=2">Novo contrato</Button></Card>
+            <Card key="contrato"><p>Imóvel vago. Cadastre um contrato para enviar o link ao inquilino.</p><Button variant="primary" href={`/app/contratos/novo?imovel=${i.id}`}>Novo contrato</Button></Card>
           ),
           <Stack gap={3} key="historico">
             {historico.length === 0 && <p style={{ color: 'var(--ink-muted)' }}>Nenhum serviço registrado ainda.</p>}
@@ -62,9 +63,9 @@ export function ImovelDetalhe({ imovel: i }: { imovel: Imovel }) {
             {['Contrato assinado.pdf', 'RG do inquilino.pdf', 'Seguro fiança.pdf'].map((d) => (
               <Card key={d}><Row gap={3}><FileText size={18} aria-hidden /><b style={{ fontSize: 14, flexGrow: 1 }}>{d}</b><Badge>Criptografado</Badge></Row></Card>
             ))}
-            <Button icon={Upload}>Enviar documento</Button>
+            <Button icon={Upload} href={i.contrato ? `/app/contratos/${i.id}` : `/app/contratos/novo?imovel=${i.id}`}>Enviar documento</Button>
           </Stack>,
-          <Card key="repasse">
+          <Card key="repasse" href={`/app/financeiro/repasses/${i.proprietario.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ /g, '-')}`}>
             <Eyebrow>Repasse de setembro · {i.proprietario}</Eyebrow>
             <ul style={{ display: 'grid', gap: 8, fontSize: 14 }}>
               <li style={{ display: 'flex', justifyContent: 'space-between' }}><span>Aluguel</span><b className="tabular">{reais(c?.valor ?? 0)}</b></li>

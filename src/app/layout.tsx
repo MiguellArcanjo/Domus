@@ -4,6 +4,8 @@ import { GeistMono } from 'geist/font/mono'
 import '../../brand/tokens/tokens.css'
 import './globals.css'
 import { PerfilProvider } from '@/components/layout/PerfilProvider'
+import { ToastProvider } from '@/components/ui/Dialog'
+import { ServiceWorker } from '@/components/layout/ServiceWorker'
 
 export const metadata: Metadata = {
   title: { default: 'Domu · Aluguel em dia. Casa em ordem.', template: '%s · Domu' },
@@ -25,7 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
-        <PerfilProvider>{children}</PerfilProvider>
+        <PerfilProvider>
+          <ToastProvider>{children}</ToastProvider>
+          <ServiceWorker />
+        </PerfilProvider>
       </body>
     </html>
   )

@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { Clock, List, Map as MapIcon } from 'lucide-react'
+import { Clock, List, Map as MapIcon, SearchX } from 'lucide-react'
+import { EmptyState } from '@/components/ui/Extras'
 import { Selo } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
@@ -16,8 +17,9 @@ import { CATEGORIAS } from '@/lib/categorias'
 import { DISPONIBILIDADE } from '@/lib/estados'
 import { km, reais } from '@/lib/format'
 import { CIDADE, POSTS, PRESTADORES, prestador } from '@/lib/mock'
+import { useSet } from '@/lib/store'
 import type { Disponibilidade } from '@/lib/types'
-import { CityHeader, FilterBar, type Filtros } from './FilterBar'
+import { CityHeader, FilterBar, passaFiltros, type Filtros } from './FilterBar'
 import { MapView, type Selecao } from './MapView'
 import s from './patterns.module.css'
 
@@ -34,13 +36,15 @@ export function Explorar({ inicial = 'lista' }: { inicial?: 'lista' | 'mapa' }) 
   const [filtros, setFiltros] = useState<Filtros>({ verificados: false })
   const [aba, setAba] = useState(0)
   const [selecao, setSelecao] = useState<Selecao>({ tipo: 'prestador', slug: 'joao-batista' })
+  const seguindo = useSet('seguindo', ['ana-lima']).lista
 
   const { posts, prestadores } = useMemo(() => {
     const disp = ABAS[aba].disp
-    const okP = PRESTADORES.filter((p) => (!filtros.categoria || p.categoria === filtros.categoria) && (!filtros.verificados || p.verificado) && (!disp || disp.includes(p.disponibilidade)))
+    const okP = PRESTADORES.filter((p) => passaFiltros(p, filtros) && (!disp || disp.includes(p.disponibilidade)))
     const slugs = new Set(okP.map((p) => p.slug))
-    return { prestadores: okP, posts: POSTS.filter((po) => slugs.has(po.prestadorSlug)) }
-  }, [filtros, aba])
+    const posts = POSTS.filter((po) => slugs.has(po.prestadorSlug)).sort((a, b) => Number(seguindo.includes(b.prestadorSlug)) - Number(seguindo.includes(a.prestadorSlug)) || Number(!!b.destaque) - Number(!!a.destaque))
+    return { prestadores: okP, posts }
+  }, [filtros, aba, seguindo])
 
   const sel = selecao?.tipo === 'prestador' ? prestador(selecao.slug) : undefined
   const selPost = selecao?.tipo === 'post' ? POSTS.find((p) => p.id === selecao.id) : undefined
@@ -67,7 +71,7 @@ export function Explorar({ inicial = 'lista' }: { inicial?: 'lista' | 'mapa' }) 
         <div className={s.grid}>
           {posts.map((p) => <PostCard key={p.id} post={p} href={`/app/post/${p.id}`} />)}
         </div>
-        {posts.length === 0 && <p style={{ color: 'var(--ink-muted)' }}>Nenhum trabalho com esses filtros. Tente outra categoria ou tire o filtro de dia.</p>}
+        {posts.length === 0 && <EmptyState icon={SearchX} title="Nada com esses filtros" action={<Button onClick={() => { setFiltros({ verificados: false }); setAba(0) }}>Limpar filtros</Button>}>Tente outra categoria, um preço maior ou tire o filtro de dia.</EmptyState>}
       </section>
 
       <section className={`${s.mapWrap} ${visao === 'lista' ? s.hideMobile : ''}`} aria-label="Mapa">
@@ -82,7 +86,7 @@ export function Explorar({ inicial = 'lista' }: { inicial?: 'lista' | 'mapa' }) 
                   <Meta icon={Clock} tone="brand">{DISPONIBILIDADE[sel.disponibilidade]}</Meta>
                   <b style={{ fontSize: 13 }}>a partir de {reais(Math.min(...sel.precos.map((i) => i.preco)))}</b>
                 </div>
-                <SaveButton label={sel.nome} plain />
+                <SaveButton id={sel.slug} tipo="prestadores" label={sel.nome} plain />
               </div>
               <div className={s.previewActions}>
                 <Button href={`/app/prestadores/${sel.slug}`}>Ver perfil</Button>

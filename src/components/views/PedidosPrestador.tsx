@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ArrowRight, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { Avatar } from '@/components/ui/Avatar'
 import { Badge, UrgenteBadge } from '@/components/ui/Badge'
 import { Card } from '@/components/ui/Card'
@@ -19,6 +20,7 @@ export function PedidosPrestador() {
   const eu = PRESTADORES[0]
   const [aba, setAba] = useState(0)
   const [disponivel, setDisponivel] = useState(true)
+  const bemvindo = useSearchParams().get('bemvindo')
   const lista = PEDIDOS_PRESTADOR.filter((p) => p.status === GRUPOS[aba].id)
   return (
     <Stack gap={4} style={{ maxWidth: 720 }}>
@@ -29,6 +31,7 @@ export function PedidosPrestador() {
           <span style={{ width: 8, height: 8, borderRadius: 4, background: disponivel ? 'var(--brand)' : 'var(--line-strong)' }} />{disponivel ? 'Disponível' : 'Indisponível'}
         </button>
       </Row>
+      {bemvindo && <Card tone="soft"><p role="status"><b>Cadastro concluído.</b> Você já aparece na busca da sua região. Para ganhar o selo, envie os documentos em <Link href="/app/verificacao" style={{ textDecoration: 'underline' }}>Verificação</Link>.</p></Card>}
       <Card>
         <Row between style={{ alignItems: 'flex-end' }}>
           <div><Eyebrow>A liberar</Eyebrow><b style={{ fontSize: 22 }} className="tabular">{reais(CARTEIRA.aLiberar)}</b></div>

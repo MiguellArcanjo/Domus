@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Chip } from '@/components/ui/Chip'
+import { TextLink } from '@/components/ui/Text'
 import { Eyebrow } from '@/components/ui/Meta'
 import { Row, Stack } from '@/components/ui/Stack'
-import { BarChart } from '@/components/domain/Kpi'
+import { PeriodChart } from '@/components/domain/PeriodChart'
 import { SaqueButton } from '@/components/views/SaqueButton'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Panel } from '@/components/patterns/Responsive'
@@ -15,15 +15,14 @@ export const metadata: Metadata = { title: 'Carteira' }
 export default function Carteira() {
   return (
     <Stack gap={4} style={{ maxWidth: 720 }}>
-      <PageHeader title="Carteira" />
+      <PageHeader title="Carteira" actions={<TextLink href="/app/carteira/recebimento">Dados de recebimento</TextLink>} />
       <section aria-label="Saldo" style={{ background: 'var(--tinta)', color: '#fff', borderRadius: 18, padding: 18, display: 'grid', gap: 10 }}>
         <span style={{ fontSize: 13, color: '#C9D3CE' }}>Saldo disponível</span>
         <b style={{ fontSize: 32, letterSpacing: '-0.02em' }} className="tabular">{reais(CARTEIRA.disponivel, true)}</b>
         <Row between wrap><span style={{ fontSize: 13, color: '#C9D3CE' }}>A liberar: {reais(CARTEIRA.aLiberar, true)}</span><SaqueButton valor={CARTEIRA.disponivel} /></Row>
       </section>
       <Panel label="Atividade">
-        <Row between><h2 style={{ fontSize: 20 }}>Atividade</h2><Chip dropdown>Últimos 30 dias</Chip></Row>
-        <BarChart label="Ganhos por semana" dados={CARTEIRA.atividade.map((v, i) => ({ rotulo: `S${i + 1}`, valor: v }))} destaque={5} />
+        <PeriodChart titulo="Atividade" label="Ganhos por semana" dados={CARTEIRA.atividade.map((v, i) => ({ rotulo: `S${i + 1}`, valor: v }))} periodos={[{ value: '4', label: 'Últimas 4 semanas', n: 4 }, { value: '7', label: 'Últimas 7 semanas', n: 7 }]} />
       </Panel>
       <Eyebrow as="h2">Lançamentos</Eyebrow>
       <ul>

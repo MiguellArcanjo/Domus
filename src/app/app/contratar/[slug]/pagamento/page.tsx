@@ -8,6 +8,7 @@ import { Eyebrow, Meta } from '@/components/ui/Meta'
 import { Row, Stack } from '@/components/ui/Stack'
 import { BackBar, StickyActions } from '@/components/layout/PageHeader'
 import { reais } from '@/lib/format'
+import { EnderecoSelect } from '@/components/views/EnderecoSelect'
 import { PRESTADORES, prestador } from '@/lib/mock'
 
 type Props = { params: Promise<{ slug: string }>; searchParams: Promise<{ item?: string; quando?: string }> }
@@ -38,7 +39,8 @@ export default async function Pagamento({ params, searchParams }: Props) {
       </ul>
       <Eyebrow as="h2">Forma de pagamento</Eyebrow>
       <RadioList name="forma" label="Forma de pagamento" defaultValue="pix" options={[{ value: 'pix', label: 'Pix', detalhe: 'aprovação na hora' }, { value: 'cartao', label: 'Cartão de crédito', detalhe: 'até 3x' }]} />
-      <Meta icon={CalendarDays}>{quando} · {p.proximoHorario} · Rua das Acácias, 120</Meta>
+      <Meta icon={CalendarDays}>{quando} · {p.proximoHorario}</Meta>
+      <EnderecoSelect />
       <StickyActions>
         <Button variant="primary" block href="/app/meus-pedidos/c8f3k2?novo=1">Pagar {reais(escolhido.preco)} pelo app</Button>
       </StickyActions>

@@ -1,5 +1,5 @@
 import {
-  CalendarDays, ClipboardList, FileText, House, Inbox, KeyRound, Map, Plus, Bookmark, User, Wallet, type LucideIcon,
+  CalendarDays, ClipboardList, FileText, House, Inbox, KeyRound, Map, MessageCircle, Plus, Bookmark, Store, User, Users, Wallet, type LucideIcon,
 } from 'lucide-react'
 import type { Perfil } from './types'
 
@@ -19,6 +19,8 @@ export const NAV: Record<Perfil, ItemNav[]> = {
     { href: '/app/chamados', rotulo: 'Chamados', icone: Inbox },
     { href: '/app/explorar', rotulo: 'Explorar', icone: Map },
     { href: '/app/contratos', rotulo: 'Contratos', icone: FileText, soLateral: true },
+    { href: '/app/financeiro', rotulo: 'Financeiro', icone: Wallet, soLateral: true },
+    { href: '/app/meus-prestadores', rotulo: 'Prestadores', icone: Users, soLateral: true },
     { href: '/app/conta', rotulo: 'Perfil', icone: User },
   ],
   prestador: [
@@ -26,11 +28,14 @@ export const NAV: Record<Perfil, ItemNav[]> = {
     { href: '/app/agenda', rotulo: 'Agenda', icone: CalendarDays },
     { href: '/app/postar', rotulo: 'Postar', icone: Plus },
     { href: '/app/carteira', rotulo: 'Carteira', icone: Wallet },
+    { href: '/app/mensagens', rotulo: 'Mensagens', icone: MessageCircle, soLateral: true },
+    { href: '/app/meu-perfil', rotulo: 'Meu perfil', icone: Store, soLateral: true },
     { href: '/app/conta', rotulo: 'Perfil', icone: User },
   ],
   cliente: [
     { href: '/app/explorar', rotulo: 'Explorar', icone: Map },
     { href: '/app/meus-pedidos', rotulo: 'Pedidos', icone: ClipboardList },
+    { href: '/app/mensagens', rotulo: 'Mensagens', icone: MessageCircle },
     { href: '/app/salvos', rotulo: 'Salvos', icone: Bookmark },
     { href: '/app/conta', rotulo: 'Perfil', icone: User },
   ],

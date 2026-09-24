@@ -1,0 +1,12 @@
+.slider { display: grid; gap: 8px; }
+.sliderTop { display: flex; justify-content: space-between; font-size: 13px; }
+.sliderTop b { font-size: 15px; }
+.slider input { width: 100%; accent-color: var(--brand); height: 28px; }
+.skeleton { background: linear-gradient(90deg, var(--surface-muted) 0%, var(--line) 50%, var(--surface-muted) 100%); background-size: 200% 100%; animation: pulse 1.4s ease-in-out infinite; border-radius: 12px; }
+@keyframes pulse { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
+.empty { display: grid; justify-items: center; text-align: center; gap: 10px; padding: 40px 16px; border: 1px dashed var(--line-strong); border-radius: 18px; }
+.empty span { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--brand-soft); color: var(--on-brand-soft); }
+.empty p { color: var(--ink-muted); max-width: 40ch; font-size: 14px; }
+.select { height: 48px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--surface); padding: 0 12px; font-size: 16px; width: 100%; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; cursor: pointer; }
+.check input { width: 20px; height: 20px; accent-color: var(--brand); margin-top: 1px; flex-shrink: 0; }

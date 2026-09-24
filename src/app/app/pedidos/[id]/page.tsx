@@ -28,7 +28,7 @@ export default async function Pedido({ params }: Props) {
       <BackBar title={`Pedido ${p.codigo}`} back="/app/pedidos" />
       <Row gap={2}>{p.urgente && <UrgenteBadge />}<Badge>{p.origem === 'corretor' ? 'Via corretor' : 'Cliente do app'}</Badge></Row>
       <h2 style={{ fontSize: 22 }}>{p.servico} · {reais(p.valor)}</h2>
-      <Row gap={2}><Photo legenda="Foto do problema" height={130} /><Photo legenda="Foto 2" height={130} /></Row>
+      <div style={{ display: 'grid', gap: 8, gridTemplateColumns: '1fr 1fr' }}><Photo legenda="Foto do problema" height={130} /><Photo legenda="Foto 2" height={130} /></div>
       <p>“{p.descricao}”</p>
       <Card>
         <Meta icon={MapPin} tone="ink">{p.bairro} · endereço completo depois de aceitar</Meta>
