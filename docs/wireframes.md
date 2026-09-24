@@ -2,6 +2,8 @@
 
 Protótipo clicável: https://claude.ai/artifact/5sxFsJay9Af5hzSo76o3xy
 
+As telas estão na largura de celular (390 px), a forma principal do app web. As versões para computador seguem as regras de `docs/estrutura-funcional.md`, seção 1.
+
 Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um controle que age ali mesmo (filtro, aba, curtir). O código das telas vem de `docs/estrutura-funcional.md`.
 
 ## Entrada

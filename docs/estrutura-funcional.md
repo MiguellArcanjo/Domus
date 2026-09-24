@@ -4,11 +4,21 @@ Este documento lista o que o sistema faz, onde cada função aparece e quais com
 
 ## 1. Superfícies
 
-| Superfície | Tecnologia | Quem usa | Para quê |
+O Domu é **web**: um **site** e um **app web**, os dois no mesmo projeto Next.js. Não há app nativo nas lojas. O app web funciona no navegador do celular e do computador e pode ser instalado na tela inicial como PWA, com ícone, tela cheia e notificações push.
+
+| Superfície | Rotas | Quem usa | Para quê |
 | --- | --- | --- | --- |
-| **App Domu** | React Native (Expo) | Corretor ou proprietário, prestador, cliente avulso | O produto inteiro. O perfil ativo decide as abas. |
-| **Web pública** | Next.js | Inquilino (pelo link) e visitante | Link do inquilino (G-04), busca pública, posts e perfis públicos com prévia no WhatsApp (V-08) |
-| **Painel web** | Next.js | Corretor | As mesmas funções de gestão do app, em tela larga: tabelas, extratos e documentos |
+| **Site** (público, com SEO) | `/`, `/prestadores`, `/servicos/[categoria]/[cidade]`, `/p/[prestador]`, `/post/[id]`, `/para-corretores`, `/para-prestadores` | Visitante, cliente avulso, Google | Página inicial, busca pública, perfis e posts com prévia no WhatsApp (V-08), páginas de venda para corretor e prestador |
+| **App web** (logado) | `/app/...` | Corretor ou proprietário, prestador, cliente avulso | O produto inteiro. O perfil ativo decide a navegação. |
+| **Link do inquilino** (sem login) | `/c/[token]` | Inquilino | Abrir e acompanhar chamados (G-04) pelo link do WhatsApp |
+
+**Responsivo, pensado primeiro para o celular.** O mesmo app web muda de forma pela largura da tela:
+
+| Largura | Navegação | Explorar | Telas de gestão |
+| --- | --- | --- | --- |
+| Celular (< 768 px) | Barra de abas flutuante embaixo | Lista **ou** mapa, trocados por um botão | Cards empilhados |
+| Tablet (768–1199 px) | Barra lateral só com ícones | Lista e mapa lado a lado | Cards em 2 colunas |
+| Computador (≥ 1200 px) | Barra lateral com os nomes | Lista à esquerda e mapa à direita, sincronizados | Tabelas (imóveis, chamados, extrato) e detalhe ao lado |
 
 Uma mesma conta pode ter mais de um perfil, como um corretor que também contrata serviços. A troca de perfil fica em Perfil.
 
@@ -78,7 +88,7 @@ Uma mesma conta pode ter mais de um perfil, como um corretor que também contrat
 - Saldo, a liberar, saques, histórico de serviços e agenda (fase 4)
 
 ### 2.11 Notificações
-- WhatsApp como canal principal e push e e-mail como apoio
+- WhatsApp como canal principal, com push web (PWA instalado) e e-mail como apoio
 - Central de notificações no app, agrupada por chamado
 
 ### 2.12 Operação (interno)
@@ -111,9 +121,9 @@ A barra de abas é **flutuante**, em forma de pílula, e a aba ativa fica dentro
 
 A ordem vai do mais genérico ao mais específico. Uma camada só usa as camadas de baixo.
 
-**Tokens:** cores, tipografia, espaço, raio, sombra, nos temas claro e escuro. Já estão em `brand/tokens`.
+**Tokens:** cores, tipografia, espaço, raio, sombra, nos temas claro e escuro. Já estão em `brand/tokens/tokens.css` e viram variáveis CSS do app.
 
-**Primitivos:** Text · Icon · Button · IconButton · Badge · Avatar · AvatarStack · Input · SearchField · TextArea · Select · Chip · Switch · Checkbox · Card · Divider · ListItem · Sheet (folha inferior) · Modal · Header · TabBar · SegmentedControl · Toast · Skeleton · EmptyState · ProgressBar · Rating (estrelas) · PhotoGrid · ImageCarousel
+**Primitivos:** Text · Icon · Button · IconButton · Badge · Avatar · AvatarStack · Input · SearchField · TextArea · Select · Chip · Switch · Checkbox · Card · Divider · ListItem · Sheet (folha inferior no celular, painel lateral no computador) · Modal · Header · TabBar (celular) · Sidebar (tablet e computador) · SegmentedControl · Toast · Skeleton · EmptyState · ProgressBar · Rating (estrelas) · PhotoGrid · ImageCarousel
 
 **De domínio:**
 - Marca: Logo · Selo (serviço e prestador verificado)
@@ -126,7 +136,7 @@ A ordem vai do mais genérico ao mais específico. Uma camada só usa as camadas
 - Vitrine: PostCard · PostHeader · AntesDepois · ReacoesBar · ComentarioItem · QueroServicoCTA
 - Pagamento: ResumoPedido · EscrowAviso · AvaliacaoCard
 
-**Vindos das referências (seção 6):** FloatingTabBar · HeroTitle · FilterButton · SegmentedPills · UnderlineTabs · CityHeader · ViewToggle · DropdownChip · ToggleChip · PriceTag · MetaRow · ArrowCircle · PagerDots · Carousel · TrustBadge · RatingPill · NomeVerificado · DepoimentoCard · ActivityChart · SocialProof · HeroMedia · StickyCTA · SearchOverlay · ResultRow · PricePin · PostPin · UserDot · MapControls · MapPreviewCard
+**Vindos das referências (seção 6):** FloatingTabBar (celular) · Sidebar (tablet e computador) · HeroTitle · FilterButton · SegmentedPills · UnderlineTabs · CityHeader · ViewToggle · DropdownChip · ToggleChip · PriceTag · MetaRow · ArrowCircle · PagerDots · Carousel · TrustBadge · RatingPill · NomeVerificado · DepoimentoCard · ActivityChart · SocialProof · HeroMedia · StickyCTA · SearchOverlay · ResultRow · PricePin · PostPin · UserDot · MapControls · MapPreviewCard
 
 **Padrões (blocos de tela):** FiltroBar · ListaComBusca · FeedInfinito · Explorar (CityHeader, FilterBar e UnderlineTabs sobre a lista ou o mapa) · FluxoChamado (em etapas) · CheckoutProtegido · Onboarding em etapas
 
@@ -135,19 +145,23 @@ A ordem vai do mais genérico ao mais específico. Uma camada só usa as camadas
 ### Organização do código (proposta)
 
 ```
-apps/
-  mobile/        Expo (Expo Router)
-  web/           Next.js: link do inquilino, busca pública e painel web
-packages/
-  tokens/        gerado de brand/tokens (CSS e TS)
-  ui/            primitivos e componentes de domínio, em React Native e na web via react-native-web
-  domain/        tipos, estados do chamado, regras (preço, escrow, permissões)
-  api/           cliente do backend (Supabase)
+src/
+  app/
+    (site)/        site público: página inicial, busca, perfis, posts (renderizados no servidor, com SEO)
+    app/           app web logado, por perfil: corretor, prestador, cliente
+    c/[token]/     link do inquilino
+    api/           rotas de servidor (webhooks de pagamento e WhatsApp, triagem por IA)
+  components/
+    ui/            primitivos
+    domain/        componentes de domínio
+    patterns/      blocos de tela
+  lib/             tokens, regras de domínio (estados do chamado, preço, escrow, permissões) e cliente do Supabase
+public/            ícones, manifest.webmanifest (PWA)
 ```
 
 ## 6. Direção visual, a partir das referências
 
-As referências entram como padrões de tela, não como cópia. As cores são sempre as do Domu (jade, trena, tinta, cal), e o azul, o verde e o roxo das referências viram tokens do Domu.
+As referências são de apps de celular. No Domu elas valem para a versão de celular do app web, e cada padrão ganha uma forma para a tela larga (seção 1). As referências entram como padrões de tela, não como cópia. As cores são sempre as do Domu (jade, trena, tinta, cal), e o azul, o verde e o roxo das referências viram tokens do Domu.
 
 ### 6.1 Base de todo o app: Property Finder
 
@@ -189,7 +203,7 @@ As referências entram como padrões de tela, não como cópia. As cores são se
 
 ## 7. Ordem de construção (segue o roadmap do PRD)
 
-1. **Fase 1:** tokens, primitivos, Conta, Imóveis, Contratos, Chamados (com o link do inquilino e a triagem por IA), lista curada de prestadores, painel
+1. **Fase 1:** projeto Next.js com PWA, tokens, primitivos, layout responsivo (abas e barra lateral), Conta, Imóveis, Contratos, Chamados (com o link do inquilino e a triagem por IA), lista curada de prestadores, painel
 2. **Fase 2:** catálogo e preços, Explorar (mapa), Vitrine, contratação, pagamento protegido, avaliações, selo
 3. **Fase 3:** cobrança, repasse, reajuste, vistoria
 4. **Fase 4:** carteira e agenda do prestador, destaque pago, seguir prestador

@@ -9,7 +9,7 @@ Design system publicado: https://claude.ai/artifact/XsY4QrX5VgpoGkrG7swkmP
 | Pasta | O que tem |
 | --- | --- |
 | `logo/` | Logo em SVG, com o nome em curvas: horizontal e vertical, nas versões principal, negativo, escuro, 1 cor preto e 1 cor branco, além do símbolo sozinho |
-| `icone/` | Ícone do app (SVG e PNG de 1024, 512 e 180, sangrado) e versão arredondada (192 e 512) e favicon (SVG, 32 e 48) |
+| `icone/` | Ícone do app web: favicon (SVG, 32 e 48), PWA (192 e 512 arredondados, 512 sangrado para ícone "maskable") e ícone da tela inicial do iPhone (180) |
 | `tokens/` | `tokens.css` (variáveis CSS, com tema claro e escuro) e `tokens.json` (os mesmos valores, mais os estados do chamado) |
 | `componentes/` | `bundle.js` (`window.Domu`, React 18), `bundle.css` (classes `dm-*`) e `index.d.ts` |
 | `scripts/` | `gerar-logo.py` gera os SVGs a partir da fonte Geist; `gerar-tokens-json.py` gera o JSON a partir do CSS |

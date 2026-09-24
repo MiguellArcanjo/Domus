@@ -1,6 +1,6 @@
 # Domu
 
-Gestão de aluguel e marketplace de manutenção residencial, para corretores autônomos, pequenos proprietários, inquilinos e prestadores.
+Site e app web de gestão de aluguel e marketplace de manutenção residencial, para corretores autônomos, pequenos proprietários, inquilinos e prestadores.
 
 **Aluguel em dia. Casa em ordem.**
 
