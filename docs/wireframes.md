@@ -2,9 +2,198 @@
 
 Protótipo clicável: https://claude.ai/artifact/5sxFsJay9Af5hzSo76o3xy
 
-As telas estão na largura de celular (390 px), a forma principal do app web. As versões para computador seguem as regras de `docs/estrutura-funcional.md`, seção 1.
-
 Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um controle que age ali mesmo (filtro, aba, curtir). O código das telas vem de `docs/estrutura-funcional.md`.
+
+## Site
+
+### Site · página inicial (`S_Home`)
+
+| Botão | Leva para |
+| --- | --- |
+| Sou corretor ou proprietário | Site · para corretores |
+| Preciso de um serviço | Site · busca pública (SEO) |
+| Sou prestador de serviço | Site · para prestadores |
+| Site: Corretor e proprietário | Site · para corretores |
+| Site: Inquilino | Site · página inicial |
+| Site: Prestador | Site · para prestadores |
+| Explorar a vitrine | Site · busca pública (SEO) |
+| Abrir post da vitrine | Detalhe do post |
+| Buscar um serviço | Site · busca pública (SEO) |
+| Pino: R$ 80 | fica na tela |
+| Pino: R$ 90 | fica na tela |
+| Pino: R$ 680 | fica na tela |
+| Pino: R$ 280 | fica na tela |
+| Pino de post da vitrine | fica na tela |
+| Preços: Começar grátis | Entrar com WhatsApp |
+| Preços: Quero receber pedidos | Site · para prestadores |
+| Preços: Buscar um serviço | Site · busca pública (SEO) |
+| Começar grátis | Entrar com WhatsApp |
+| Site: Encontrar prestador | Site · busca pública (SEO) |
+| Site: Para corretores | Site · para corretores |
+| Site: Para prestadores | Site · para prestadores |
+| Site: Como funciona | Site · página inicial |
+| Site: página inicial | Site · página inicial |
+| Site: Entrar | Entrar com WhatsApp |
+| Site: Começar grátis | Entrar com WhatsApp |
+| Rodapé: Para corretores | Site · para corretores |
+| Rodapé: Para prestadores | Site · para prestadores |
+| Rodapé: Encontrar prestador | Site · busca pública (SEO) |
+| Rodapé: Preços | Site · para corretores |
+| Rodapé: Encanador | Site · busca pública (SEO) |
+| Rodapé: Eletricista | Site · busca pública (SEO) |
+| Rodapé: Pintor | Site · busca pública (SEO) |
+| Rodapé: Diarista | Site · busca pública (SEO) |
+| Rodapé: Como funciona | Site · página inicial |
+| Rodapé: Pagamento protegido | Site · página inicial |
+| Rodapé: Privacidade (LGPD) | Site · página inicial |
+| Rodapé: Ajuda | Site · página inicial |
+
+### Site · para corretores (`S_Corretores`)
+
+| Botão | Leva para |
+| --- | --- |
+| Começar grátis | Entrar com WhatsApp |
+| Ver o painel | Painel do corretor · computador |
+| Plano: Começo | Entrar com WhatsApp |
+| Plano: Por imóvel | Entrar com WhatsApp |
+| Plano: Carteira | Entrar com WhatsApp |
+| Site: Encontrar prestador | Site · busca pública (SEO) |
+| Site: Para corretores | Site · para corretores |
+| Site: Para prestadores | Site · para prestadores |
+| Site: Como funciona | Site · página inicial |
+| Site: página inicial | Site · página inicial |
+| Site: Entrar | Entrar com WhatsApp |
+| Site: Começar grátis | Entrar com WhatsApp |
+| Rodapé: Para corretores | Site · para corretores |
+| Rodapé: Para prestadores | Site · para prestadores |
+| Rodapé: Encontrar prestador | Site · busca pública (SEO) |
+| Rodapé: Preços | Site · para corretores |
+| Rodapé: Encanador | Site · busca pública (SEO) |
+| Rodapé: Eletricista | Site · busca pública (SEO) |
+| Rodapé: Pintor | Site · busca pública (SEO) |
+| Rodapé: Diarista | Site · busca pública (SEO) |
+| Rodapé: Como funciona | Site · página inicial |
+| Rodapé: Pagamento protegido | Site · página inicial |
+| Rodapé: Privacidade (LGPD) | Site · página inicial |
+| Rodapé: Ajuda | Site · página inicial |
+
+### Site · para prestadores (`S_Prestadores`)
+
+| Botão | Leva para |
+| --- | --- |
+| Quero receber pedidos | Entrar com WhatsApp |
+| Quero o destaque | Entrar com WhatsApp |
+| Site: Encontrar prestador | Site · busca pública (SEO) |
+| Site: Para corretores | Site · para corretores |
+| Site: Para prestadores | Site · para prestadores |
+| Site: Como funciona | Site · página inicial |
+| Site: página inicial | Site · página inicial |
+| Site: Entrar | Entrar com WhatsApp |
+| Site: Começar grátis | Entrar com WhatsApp |
+| Rodapé: Para corretores | Site · para corretores |
+| Rodapé: Para prestadores | Site · para prestadores |
+| Rodapé: Encontrar prestador | Site · busca pública (SEO) |
+| Rodapé: Preços | Site · para corretores |
+| Rodapé: Encanador | Site · busca pública (SEO) |
+| Rodapé: Eletricista | Site · busca pública (SEO) |
+| Rodapé: Pintor | Site · busca pública (SEO) |
+| Rodapé: Diarista | Site · busca pública (SEO) |
+| Rodapé: Como funciona | Site · página inicial |
+| Rodapé: Pagamento protegido | Site · página inicial |
+| Rodapé: Privacidade (LGPD) | Site · página inicial |
+| Rodapé: Ajuda | Site · página inicial |
+
+### Site · busca pública (SEO) (`S_Busca`)
+
+| Botão | Leva para |
+| --- | --- |
+| Filtro: Hoje | fica na tela |
+| Filtro: Verificados | fica na tela |
+| Filtro: Preço | fica na tela |
+| Filtro: Nota 4,5+ | fica na tela |
+| Filtro: Bairro | fica na tela |
+| Ver perfil de João Batista | Site · perfil público do prestador |
+| Pedir orçamento a João Batista | Entrar com WhatsApp |
+| Ver perfil de Carlos Souza | Site · perfil público do prestador |
+| Pedir orçamento a Carlos Souza | Entrar com WhatsApp |
+| Pino: R$ 80 | fica na tela |
+| Pino: R$ 90 | fica na tela |
+| Pino: R$ 120 | fica na tela |
+| Pino: R$ 95 | fica na tela |
+| Pino de post da vitrine | fica na tela |
+| Site: Encontrar prestador | Site · busca pública (SEO) |
+| Site: Para corretores | Site · para corretores |
+| Site: Para prestadores | Site · para prestadores |
+| Site: Como funciona | Site · página inicial |
+| Site: página inicial | Site · página inicial |
+| Site: Entrar | Entrar com WhatsApp |
+| Site: Começar grátis | Entrar com WhatsApp |
+| Busca: Eletricista | Site · busca pública (SEO) |
+| Busca: Pintor | Site · busca pública (SEO) |
+| Busca: Diarista | Site · busca pública (SEO) |
+| Busca: Desentupidora | Site · busca pública (SEO) |
+| Busca: Instalação de chuveiro | Site · busca pública (SEO) |
+| Busca: Reparos gerais | Site · busca pública (SEO) |
+| Rodapé: Para corretores | Site · para corretores |
+| Rodapé: Para prestadores | Site · para prestadores |
+| Rodapé: Encontrar prestador | Site · busca pública (SEO) |
+| Rodapé: Preços | Site · para corretores |
+| Rodapé: Encanador | Site · busca pública (SEO) |
+| Rodapé: Eletricista | Site · busca pública (SEO) |
+| Rodapé: Pintor | Site · busca pública (SEO) |
+| Rodapé: Diarista | Site · busca pública (SEO) |
+| Rodapé: Como funciona | Site · página inicial |
+| Rodapé: Pagamento protegido | Site · página inicial |
+| Rodapé: Privacidade (LGPD) | Site · página inicial |
+| Rodapé: Ajuda | Site · página inicial |
+
+### Site · perfil público do prestador (`S_Perfil`)
+
+| Botão | Leva para |
+| --- | --- |
+| Aba: Portfólio | fica na tela |
+| Aba: Avaliações | fica na tela |
+| Aba: Sobre | fica na tela |
+| Abrir post do portfólio | Detalhe do post |
+| Pedir orçamento | Entrar com WhatsApp |
+| Compartilhar perfil | fica na tela |
+| Site: Encontrar prestador | Site · busca pública (SEO) |
+| Site: Para corretores | Site · para corretores |
+| Site: Para prestadores | Site · para prestadores |
+| Site: Como funciona | Site · página inicial |
+| Site: página inicial | Site · página inicial |
+| Site: Entrar | Entrar com WhatsApp |
+| Site: Começar grátis | Entrar com WhatsApp |
+| Rodapé: Para corretores | Site · para corretores |
+| Rodapé: Para prestadores | Site · para prestadores |
+| Rodapé: Encontrar prestador | Site · busca pública (SEO) |
+| Rodapé: Preços | Site · para corretores |
+| Rodapé: Encanador | Site · busca pública (SEO) |
+| Rodapé: Eletricista | Site · busca pública (SEO) |
+| Rodapé: Pintor | Site · busca pública (SEO) |
+| Rodapé: Diarista | Site · busca pública (SEO) |
+| Rodapé: Como funciona | Site · página inicial |
+| Rodapé: Pagamento protegido | Site · página inicial |
+| Rodapé: Privacidade (LGPD) | Site · página inicial |
+| Rodapé: Ajuda | Site · página inicial |
+
+### Site · página inicial no celular (`S_HomeCelular`)
+
+| Botão | Leva para |
+| --- | --- |
+| Site: página inicial | Site · página inicial no celular |
+| Site: Entrar | Entrar com WhatsApp |
+| Abrir menu | fica na tela |
+| Sou corretor ou proprietário | Site · para corretores |
+| Preciso de um serviço | Site · busca pública (SEO) |
+| Site: Corretor e proprietário | Site · para corretores |
+| Site: Inquilino | Site · página inicial no celular |
+| Site: Prestador | Site · para prestadores |
+| Explorar a vitrine | Site · busca pública (SEO) |
+| Começar grátis | Entrar com WhatsApp |
+| Rodapé: Corretores | Site · para corretores |
+| Rodapé: Prestadores | Site · para prestadores |
+| Rodapé: Buscar | Site · busca pública (SEO) |
 
 ## Entrada
 
@@ -309,6 +498,131 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Ver perfil de Carlos Souza | Perfil do prestador |
 | Cancelar chamado | fica na tela |
 | Aprovar João · R$ 120 | Caixa de chamados |
+
+## Computador
+
+### Painel do corretor · computador (`D_Painel`)
+
+| Botão | Leva para |
+| --- | --- |
+| Menu: Início | Painel do corretor · computador |
+| Menu: Imóveis | Imóveis · computador |
+| Menu: Chamados | Chamados · computador |
+| Menu: Explorar | Explorar · computador (lista + mapa) |
+| Menu: Contratos | Detalhe do imóvel |
+| Menu: Financeiro | Painel do corretor · computador |
+| Trocar perfil | Perfil e conta |
+| Início do app | Painel do corretor · computador |
+| Notificações | Chamados · computador |
+| Imóveis ocupados | Imóveis · computador |
+| Atrasados | Imóveis · computador |
+| Chamados abertos | Chamados · computador |
+| Ver todos os chamados | Chamados · computador |
+| Abrir chamado: vazamento | Chamados · computador |
+| Abrir chamado: tomada | Chamados · computador |
+| Abrir chamado: umidade | Chamados · computador |
+| Filtro: 6 meses | fica na tela |
+| Abrir contrato que vence | Detalhe do imóvel |
+| Abrir reajuste | Detalhe do imóvel |
+| Cobrar aluguel atrasado | Imóveis · computador |
+| Novo imóvel | Novo imóvel e contrato |
+| Enviar link ao inquilino | Link do inquilino |
+| Encontrar prestador | Explorar · computador (lista + mapa) |
+
+### Imóveis · computador (`D_Imoveis`)
+
+| Botão | Leva para |
+| --- | --- |
+| Menu: Início | Painel do corretor · computador |
+| Menu: Imóveis | Imóveis · computador |
+| Menu: Chamados | Chamados · computador |
+| Menu: Explorar | Explorar · computador (lista + mapa) |
+| Menu: Contratos | Detalhe do imóvel |
+| Menu: Financeiro | Painel do corretor · computador |
+| Trocar perfil | Perfil e conta |
+| Início do app | Painel do corretor · computador |
+| Notificações | Chamados · computador |
+| Pílula: Todos 16 | fica na tela |
+| Pílula: Ocupados 14 | fica na tela |
+| Pílula: Vagos 2 | fica na tela |
+| Pílula: Atrasados 2 | fica na tela |
+| Novo imóvel | Novo imóvel e contrato |
+| Abrir Casa 4 · Vila Nova | Detalhe do imóvel |
+| Abrir Ap 21 · Edifício Acácias | Detalhe do imóvel |
+| Abrir Ap 11 · Residencial Sol | Detalhe do imóvel |
+| Abrir Sala 3 · Centro | Detalhe do imóvel |
+| Editar imóvel | Novo imóvel e contrato |
+| Aba: Contrato | fica na tela |
+| Aba: Histórico | fica na tela |
+| Aba: Documentos | fica na tela |
+| Aba: Repasse | fica na tela |
+| Enviar link ao inquilino | Link do inquilino |
+| Ver contrato | Detalhe do imóvel |
+
+### Chamados · computador (`D_Chamados`)
+
+| Botão | Leva para |
+| --- | --- |
+| Menu: Início | Painel do corretor · computador |
+| Menu: Imóveis | Imóveis · computador |
+| Menu: Chamados | Chamados · computador |
+| Menu: Explorar | Explorar · computador (lista + mapa) |
+| Menu: Contratos | Detalhe do imóvel |
+| Menu: Financeiro | Painel do corretor · computador |
+| Trocar perfil | Perfil e conta |
+| Início do app | Painel do corretor · computador |
+| Notificações | Chamados · computador |
+| Aba: Abertos 3 | fica na tela |
+| Aba: Em andamento 5 | fica na tela |
+| Aba: Concluídos | fica na tela |
+| Abrir chamado: Tomada da sala sem energia | Detalhe do chamado |
+| Abrir chamado: Mancha de umidade no quarto | Detalhe do chamado |
+| Ver perfil de João Batista | Perfil do prestador |
+| Ver perfil de Carlos Souza | Perfil do prestador |
+| Ver perfil de Rafael Freitas | Perfil do prestador |
+| Buscar outro prestador | Explorar · computador (lista + mapa) |
+| Aprovar João · R$ 120 | Chamados · computador |
+| Cancelar chamado | fica na tela |
+
+### Explorar · computador (lista + mapa) (`D_Explorar`)
+
+| Botão | Leva para |
+| --- | --- |
+| Trocar cidade | fica na tela |
+| Busca | Busca |
+| Filtro: Categoria | fica na tela |
+| Filtro: Verificados | fica na tela |
+| Filtro: Preço | fica na tela |
+| Filtro: Nota | fica na tela |
+| Aba: Todos | fica na tela |
+| Aba: Hoje | fica na tela |
+| Aba: Amanhã | fica na tela |
+| Aba: Esta semana | fica na tela |
+| Abrir post: Troca de sifão | Detalhe do post |
+| Abrir post: Pintura de quarto | Detalhe do post |
+| Abrir post: Instalação de tomada | Detalhe do post |
+| Abrir post: Faxina pós-mudança | Detalhe do post |
+| Pino: R$ 80 | fica na tela |
+| Pino: R$ 90 | fica na tela |
+| Pino: R$ 120 | fica na tela |
+| Pino: R$ 680 | fica na tela |
+| Pino: R$ 280 | fica na tela |
+| Pino de post da vitrine | fica na tela |
+| Pino: R$ 150 | fica na tela |
+| Ver perfil | Site · perfil público do prestador |
+| Pedir orçamento | Pedido de serviço |
+| Aproximar | fica na tela |
+| Camadas do mapa | fica na tela |
+| Centralizar em mim | fica na tela |
+| Buscar nesta área | fica na tela |
+| Menu: Início | Painel do corretor · computador |
+| Menu: Imóveis | Imóveis · computador |
+| Menu: Chamados | Chamados · computador |
+| Menu: Explorar | Explorar · computador (lista + mapa) |
+| Menu: Contratos | Detalhe do imóvel |
+| Menu: Financeiro | Painel do corretor · computador |
+| Trocar perfil | Perfil e conta |
+| Início do app | Painel do corretor · computador |
 
 ## Prestador
 
