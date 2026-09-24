@@ -1,0 +1,16 @@
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { font-size: 13px; font-weight: 600; }
+.hint { font-size: 12px; color: var(--ink-muted); }
+.input, .textarea {
+  width: 100%; border-radius: 12px; border: 1px solid var(--line-strong);
+  background: var(--surface); color: var(--ink); font-size: 16px;
+}
+.input { height: 48px; padding: 0 var(--space-3); }
+.textarea { padding: 10px var(--space-3); resize: vertical; min-height: 88px; line-height: 1.45; }
+.input::placeholder, .textarea::placeholder { color: var(--ink-muted); }
+.input:focus-visible, .textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.code { display: flex; gap: var(--space-2); }
+.codeBox {
+  width: 48px; height: 56px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--surface);
+  text-align: center; font-size: 22px; font-weight: 700;
+}

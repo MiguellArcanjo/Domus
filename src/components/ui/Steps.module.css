@@ -1,0 +1,13 @@
+.list { display: grid; }
+.step { display: grid; grid-template-columns: 22px 1fr; gap: var(--space-3); position: relative; padding-bottom: var(--space-4); }
+.step:last-child { padding-bottom: 0; }
+.step:not(:last-child)::before { content: ''; position: absolute; left: 10px; top: 24px; bottom: 2px; width: 2px; border-radius: 1px; background: var(--line); }
+.feito:not(:last-child)::before { background: var(--brand); }
+.dot { width: 22px; height: 22px; border-radius: 11px; display: grid; place-items: center; border: 2px solid var(--line-strong); background: var(--surface); }
+.feito .dot { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.atual .dot { border-color: var(--brand); }
+.atual .dot::after { content: ''; width: 10px; height: 10px; border-radius: 5px; background: var(--accent); }
+.txt { display: grid; gap: 2px; }
+.txt b { font-size: 15px; font-weight: 600; }
+.depois .txt b { color: var(--ink-muted); font-weight: 500; }
+.txt span { font-size: 13px; color: var(--ink-muted); }

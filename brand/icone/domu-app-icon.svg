@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Domu">
+<title>Domu</title>
+<rect width="64" height="64" rx="0" fill="#0E5C4A"/>
+<g transform="translate(5.818 4.182) scale(0.8182)"><path d="M17 52V31a15 15 0 0 1 30 0v21" fill="none" stroke="#F4F6F2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="44" r="5" fill="#FFC21A"/></g>
+</svg>
