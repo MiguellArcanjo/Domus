@@ -88,18 +88,22 @@ Uma mesma conta pode ter mais de um perfil, como um corretor que também contrat
 
 | Perfil | Abas |
 | --- | --- |
-| Corretor ou proprietário | **Início** (painel) · **Imóveis** · **Chamados** · **Explorar** (mapa e vitrine) · **Perfil** |
-| Prestador | **Pedidos** · **Agenda** · **Vitrine** (meus posts e postar) · **Carteira** · **Perfil** |
-| Cliente avulso | **Vitrine** · **Mapa** · **Pedidos** · **Perfil** |
+| Corretor ou proprietário | **Início** (painel) · **Imóveis** · **Chamados** · **Explorar** · **Perfil** |
+| Prestador | **Pedidos** · **Agenda** · **Postar** · **Carteira** · **Perfil** |
+| Cliente avulso | **Explorar** · **Pedidos** · **Postar** (avaliação com foto) · **Salvos** · **Perfil** |
 | Inquilino (web, sem abas) | Meu imóvel → Abrir chamado → Acompanhar chamado (→ Pagar aluguel, na fase 3) |
+
+**Explorar junta a Vitrine e o Mapa numa tela só**, como nas referências de eventos. O conteúdo é o mesmo (serviços e posts da região) em duas visões: a **lista**, que é a vitrine, e o **mapa**. Um botão no canto superior direito troca de uma para a outra, e os filtros, a busca e a cidade valem para as duas.
+
+A barra de abas é **flutuante**, em forma de pílula, e a aba ativa fica dentro de um círculo trena, como na referência do Property Finder. É a "luz acesa" do logo.
 
 ## 4. Mapa de telas
 
-**Corretor:** Painel · Lista de imóveis · Detalhe do imóvel · Novo imóvel · Novo contrato · Detalhe do contrato · Caixa de chamados · Detalhe do chamado · Escolher prestador · Explorar (mapa) · Vitrine · Perfil do prestador · Pagamento · Avaliar · Notificações · Perfil
+**Corretor:** Painel · Lista de imóveis · Detalhe do imóvel · Novo imóvel · Novo contrato · Detalhe do contrato · Caixa de chamados · Detalhe do chamado · Escolher prestador · Explorar (lista ↔ mapa) · Busca · Resultados · Detalhe do serviço ou post · Perfil do prestador · Pagamento · Avaliar · Notificações · Perfil
 
 **Prestador:** Onboarding (dados, categorias, raio, preços) · Pedidos · Detalhe do pedido · Agenda · Concluir serviço (fotos) · Novo post · Meu perfil público · Carteira · Notificações
 
-**Cliente avulso:** Vitrine · Detalhe do post · Mapa e busca · Perfil do prestador · Pedido · Pagamento · Acompanhar · Avaliar
+**Cliente avulso:** Onboarding · Explorar (lista ↔ mapa) · Busca · Resultados · Detalhe do serviço ou post · Perfil do prestador · Pedido · Pagamento · Acompanhar · Avaliar · Salvos
 
 **Inquilino (web):** Início do link · Abrir chamado (foto e texto) · Chamado aberto · Andamento
 
@@ -122,7 +126,9 @@ A ordem vai do mais genérico ao mais específico. Uma camada só usa as camadas
 - Vitrine: PostCard · PostHeader · AntesDepois · ReacoesBar · ComentarioItem · QueroServicoCTA
 - Pagamento: ResumoPedido · EscrowAviso · AvaliacaoCard
 
-**Padrões (blocos de tela):** FiltroBar · ListaComBusca · FeedInfinito · ExplorarMapa (mapa, folha e filtros) · FluxoChamado (em etapas) · CheckoutProtegido · Onboarding em etapas
+**Vindos das referências (seção 6):** FloatingTabBar · HeroTitle · FilterButton · SegmentedPills · UnderlineTabs · CityHeader · ViewToggle · DropdownChip · ToggleChip · PriceTag · MetaRow · ArrowCircle · PagerDots · Carousel · TrustBadge · RatingPill · NomeVerificado · DepoimentoCard · ActivityChart · SocialProof · HeroMedia · StickyCTA · SearchOverlay · ResultRow · PricePin · PostPin · UserDot · MapControls · MapPreviewCard
+
+**Padrões (blocos de tela):** FiltroBar · ListaComBusca · FeedInfinito · Explorar (CityHeader, FilterBar e UnderlineTabs sobre a lista ou o mapa) · FluxoChamado (em etapas) · CheckoutProtegido · Onboarding em etapas
 
 **Telas:** montadas só com padrões e componentes. Nenhuma tela define estilo próprio.
 
@@ -139,15 +145,47 @@ packages/
   api/           cliente do backend (Supabase)
 ```
 
-## 6. Onde entra cada referência
+## 6. Direção visual, a partir das referências
 
-| Referência | Módulos |
+As referências entram como padrões de tela, não como cópia. As cores são sempre as do Domu (jade, trena, tinta, cal), e o azul, o verde e o roxo das referências viram tokens do Domu.
+
+### 6.1 Base de todo o app: Property Finder
+
+| Na referência | No Domu |
 | --- | --- |
-| Rede social (Event Discovery, 27722125) | Vitrine: feed, post, perfil com portfólio, interações |
-| Mapa + social (Event Discovery, 27696700) | Explorar: mapa com prestadores e posts, folha inferior, filtros |
-| Visual clean (Property Finder, 27445110) | Base de todo o app, em especial Imóveis, o card e o perfil do prestador |
+| Fundo cinza-claro, cards brancos com cantos grandes, muito respiro | `bg` (cal), cards em `surface` com `radius-lg`, borda `line` e sem sombra pesada |
+| Barra de abas flutuante em pílula, com a aba ativa num círculo amarelo | **FloatingTabBar**: pílula `surface` e a aba ativa num círculo `accent` (trena) com ícone `on-accent` |
+| Título grande em negrito ("Discover your new house") | **HeroTitle**: Geist 700 de 28 a 32 px, em caixa de frase ("Encontre quem resolve"). Não usamos caixa alta, pela regra da voz. |
+| Busca com o botão de filtro amarelo colado | **SearchField** com **FilterButton** trena à direita |
+| Pílulas Recommended / Nearby / Upcoming | **SegmentedPills**: "Para você · Perto de mim · Hoje" |
+| Carrossel de cards com foto, nota, nome, local e um círculo amarelo com seta | **ServicoCard** em carrossel, com **ArrowCircle** trena e **PagerDots** |
+| Onboarding com selo "Trusted Clients" (avatares), título forte e botão preto com um círculo amarelo | **Onboarding**: **TrustBadge** ("+50 prestadores verificados em {cidade}"), ilustração e botão `tinta` com **ArrowCircle** |
+| Perfil com nota em pílula, nome com check, depoimento e gráfico de atividade | **PerfilPrestador**: **RatingPill** ("4,9 · 38 avaliações"), **NomeVerificado**, **DepoimentoCard** ("Contratado por 38 clientes pelo app") e **ActivityChart** (serviços e ganhos na carteira; recebimentos no painel do corretor) |
 
-> Pendente: o dribbble.com está bloqueado neste ambiente e ainda não vi as imagens. As decisões visuais de cada módulo entram quando as referências chegarem.
+### 6.2 Vitrine (lista do Explorar): Event Discovery, a lista
+
+| Na referência | No Domu |
+| --- | --- |
+| Cabeçalho "Events in Riga ▾" e o botão de mapa à direita | **CityHeader** ("Serviços em {cidade} ▾") + **ViewToggle** (lista ↔ mapa) |
+| Linha de filtros: lupa, "Type ▾", "Free", "Mood ▾" | **FilterBar**: lupa · **DropdownChip** "Categoria ▾" · **ToggleChip** "Verificados" · **DropdownChip** "Preço ▾" · "Nota ▾" |
+| Abas sublinhadas All / Today / Tomorrow / Weekend | **UnderlineTabs**: "Todos · Hoje · Amanhã · Esta semana" (disponibilidade do prestador) |
+| Card com foto grande, selo sobre a foto ("Exclusive", "Free"), título, preço à direita, linhas de local com distância e de data | **PostCard**: foto ou antes e depois, **Selo** "Serviço verificado" ou etiqueta "Destaque" (trena) sobre a foto, título do serviço, **PriceTag** "R$ 120" e as **MetaRow** "João Batista · Vila Mariana, 1,2 km" e "Feito em 12 set" |
+| Busca aberta: recentes, "Popular" em chips e "Cancel" | **SearchOverlay**: recentes + "Mais pedidos" ("Troca de chuveiro", "Desentupimento", "Pintura de quarto", "Instalação de tomada") |
+| Resultados em linhas com miniatura e etiqueta de preço, e "Other events you might like" | **ResultRow** + a seção "Outros serviços perto de você" |
+| Detalhe: foto no topo, coração e compartilhar, avatares "12 attending. Only 3 seats remain!", descrição, botão largo "Join Event" | **DetalhePost**: **HeroMedia** (galeria ou antes e depois), **SocialProof** ("12 vizinhos já contrataram · 2 horários livres hoje"), preço, descrição, **StickyCTA** "Quero um serviço assim" |
+| Abas Events / Food / Favourites / Add Event / Profile | As abas da seção 3. "Add Event" vira **Postar**, e "Favourites" vira **Salvos**. |
+
+### 6.3 Mapa (visão mapa do Explorar): Event Discovery, o mapa
+
+| Na referência | No Domu |
+| --- | --- |
+| Mapa claro com pinos em pílula e preço ("10€", "Free", "38€") e um ícone de categoria | **PricePin**: ícone da categoria + "R$ 80". **PostPin**: ícone de câmera, para os posts da vitrine no mapa. **MapCluster** quando os pinos se juntam. |
+| Ponto azul de "você está aqui" | **UserDot** em `brand` e **RaioCirculo** opcional (o raio de atendimento, na visão do prestador) |
+| Botões de camadas e bússola à direita | **MapControls** (centralizar, camadas) |
+| Card do item escolhido na base, com foto, título, linhas de meta, coração e "Learn more" + "Join" | **MapPreviewCard**: foto, nome, ofício, disponibilidade, "a partir de R$ 80", coração, "Ver perfil" (secundário) + "Pedir orçamento" (primário). Num PostPin, o card mostra o post e "Quero um serviço assim". |
+| Mesma barra de filtros da lista | **FilterBar** compartilhada: o mesmo estado vale para lista e mapa |
+
+**Conexão entre o mapa e a rede social:** os posts aparecem no mapa pelo bairro (nunca pelo endereço exato, pela LGPD). Tocar num post abre o card do post, e dele se vai ao perfil do prestador e ao pedido.
 
 ## 7. Ordem de construção (segue o roadmap do PRD)
 
