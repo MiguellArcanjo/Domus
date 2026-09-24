@@ -1,0 +1,34 @@
+/* Controles de formulário: estrelas, opções, interruptor, fotos */
+.stars { display: flex; gap: 6px; justify-content: center; }
+.star { background: none; border: 0; padding: 2px; color: var(--warning); display: inline-flex; }
+.star svg { fill: transparent; }
+.star[data-on='true'] svg { fill: var(--accent); }
+
+.radioList { display: grid; }
+.radio { display: flex; align-items: center; gap: var(--space-3); padding: 12px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.radio input { position: absolute; opacity: 0; pointer-events: none; }
+.radioDot { width: 20px; height: 20px; border-radius: 10px; border: 2px solid var(--line-strong); display: grid; place-items: center; flex-shrink: 0; }
+.radio input:checked + .radioDot { border-color: var(--brand); }
+.radio input:checked + .radioDot::after { content: ''; width: 10px; height: 10px; border-radius: 5px; background: var(--brand); }
+.radio input:focus-visible + .radioDot { outline: 2px solid var(--focus); outline-offset: 2px; }
+.radioLabel { flex-grow: 1; font-size: 15px; }
+.radioValue { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.switch { display: flex; align-items: center; gap: var(--space-3); cursor: pointer; }
+.switch input { position: absolute; opacity: 0; }
+.track { width: 44px; height: 26px; border-radius: 13px; background: var(--line-strong); position: relative; flex-shrink: 0; transition: background var(--duration) var(--ease); }
+.track::after { content: ''; position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 10px; background: #fff; transition: transform var(--duration) var(--ease); }
+.switch input:checked + .track { background: var(--brand); }
+.switch input:checked + .track::after { transform: translateX(18px); }
+.switch input:focus-visible + .track { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.photos { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.addPhoto {
+  width: 84px; height: 84px; border-radius: 12px; border: 1px dashed var(--line-strong); background: transparent;
+  display: grid; place-items: center; align-content: center; gap: 4px; color: var(--ink-muted); font-size: 11px; position: relative; cursor: pointer;
+}
+.addPhoto input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.thumb { width: 84px; height: 84px; border-radius: 12px; background: #E3E8E4; display: grid; place-items: center; color: var(--ink-muted); font-size: 11px; text-align: center; padding: 4px; overflow: hidden; }
+
+.progress { height: 6px; border-radius: 3px; background: rgba(255,255,255,.2); overflow: hidden; }
+.progress > span { display: block; height: 100%; border-radius: 3px; background: var(--accent); }

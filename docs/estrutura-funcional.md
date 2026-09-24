@@ -1,5 +1,7 @@
 # Domu: estrutura funcional
 
+> O front está implementado em `src/`. O que o backend precisa entregar, tela por tela, está em `docs/backend.md`. Decisão posterior aos wireframes: login por e-mail e senha, e nada de WhatsApp.
+
 Este documento lista o que o sistema faz, onde cada função aparece e quais componentes vamos construir, antes de escrever código. Os IDs (G-01, M-07, V-02…) são os mesmos do PRD.
 
 ## 1. Superfícies
@@ -8,9 +10,9 @@ O Domu é **web**: um **site** e um **app web**, os dois no mesmo projeto Next.j
 
 | Superfície | Rotas | Quem usa | Para quê |
 | --- | --- | --- | --- |
-| **Site** (público, com SEO) | `/`, `/prestadores`, `/servicos/[categoria]/[cidade]`, `/p/[prestador]`, `/post/[id]`, `/para-corretores`, `/para-prestadores` | Visitante, cliente avulso, Google | Página inicial, busca pública, perfis e posts com prévia no WhatsApp (V-08), páginas de venda para corretor e prestador |
+| **Site** (público, com SEO) | `/`, `/prestadores`, `/servicos/[categoria]/[cidade]`, `/p/[prestador]`, `/post/[id]`, `/para-corretores`, `/para-prestadores` | Visitante, cliente avulso, Google | Página inicial, busca pública, perfis e posts com prévia para redes sociais (V-08), páginas de venda para corretor e prestador |
 | **App web** (logado) | `/app/...` | Corretor ou proprietário, prestador, cliente avulso | O produto inteiro. O perfil ativo decide a navegação. |
-| **Link do inquilino** (sem login) | `/c/[token]` | Inquilino | Abrir e acompanhar chamados (G-04) pelo link do WhatsApp |
+| **Link do inquilino** (sem login) | `/c/[token]` | Inquilino | Abrir e acompanhar chamados (G-04) pelo link do contrato, enviado por e-mail |
 
 **Responsivo, pensado primeiro para o celular.** O mesmo app web muda de forma pela largura da tela:
 
@@ -25,7 +27,7 @@ Uma mesma conta pode ter mais de um perfil, como um corretor que também contrat
 ## 2. Módulos e funções
 
 ### 2.1 Conta e perfis
-- Login por código no WhatsApp, sem senha
+- Login por e-mail e senha, criação de conta e recuperação de senha por e-mail
 - Escolha do perfil no primeiro acesso: corretor ou proprietário, prestador, cliente
 - Troca de perfil, dados pessoais e consentimentos da LGPD (exportar e excluir dados)
 
@@ -37,7 +39,7 @@ Uma mesma conta pode ter mais de um perfil, como um corretor que também contrat
 
 ### 2.3 Contratos e inquilinos (G-02, G-07, G-08, G-09)
 - Cadastro de inquilino e de contrato: início, fim, valor, vencimento, índice de reajuste
-- Geração do link do inquilino e envio pelo WhatsApp
+- Geração do link do inquilino e envio por e-mail
 - Alertas 60 e 30 dias antes do vencimento e do reajuste
 - Documentos por imóvel e por inquilino (fase 1, P1)
 - Reajuste automático por IGP-M ou IPCA (fase 3)
@@ -56,7 +58,7 @@ Uma mesma conta pode ter mais de um perfil, como um corretor que também contrat
 - Linha do tempo única, que as três pessoas veem, cada uma com o que lhe cabe
 
 ### 2.6 Prestadores e catálogo (M-01, M-02, M-04, M-05, M-07, M-10, M-13)
-- Cadastro do prestador: foto, documento, categorias, raio de atendimento, WhatsApp
+- Cadastro do prestador: foto, documento, categorias, raio de atendimento, e-mail
 - Catálogo de serviços padronizados por categoria, e o preço do prestador por item (fixo ou "a partir de")
 - Perfil público do prestador: card, preços, portfólio, avaliações, selo
 - Lista curada para o corretor, por categoria e bairro (fase 1)
@@ -88,7 +90,7 @@ Uma mesma conta pode ter mais de um perfil, como um corretor que também contrat
 - Saldo, a liberar, saques, histórico de serviços e agenda (fase 4)
 
 ### 2.11 Notificações
-- WhatsApp como canal principal, com push web (PWA instalado) e e-mail como apoio
+- E-mail e push web (PWA instalado). Sem WhatsApp
 - Central de notificações no app, agrupada por chamado
 
 ### 2.12 Operação (interno)
@@ -150,7 +152,7 @@ src/
     (site)/        site público: página inicial, busca, perfis, posts (renderizados no servidor, com SEO)
     app/           app web logado, por perfil: corretor, prestador, cliente
     c/[token]/     link do inquilino
-    api/           rotas de servidor (webhooks de pagamento e WhatsApp, triagem por IA)
+    api/           rotas de servidor (webhooks de pagamento, triagem por IA)
   components/
     ui/            primitivos
     domain/        componentes de domínio

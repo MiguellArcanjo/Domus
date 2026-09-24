@@ -1,0 +1,52 @@
+.shell { min-height: 100dvh; }
+.main { padding: var(--space-4) var(--gutter) calc(var(--tabbar-h) + 40px + env(safe-area-inset-bottom, 0px)); max-width: 1400px; }
+
+/* Barra de abas flutuante (celular) */
+.tabbar {
+  position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20;
+  height: var(--tabbar-h); border-radius: 32px; background: var(--surface); border: 1px solid var(--line);
+  box-shadow: var(--shadow-2); display: flex; align-items: center; justify-content: space-around; padding: 0 8px;
+}
+.tab { display: grid; justify-items: center; gap: 2px; width: 60px; color: var(--ink-muted); font-size: 10px; line-height: 12px; }
+.tabOn { width: 48px; height: 48px; border-radius: 24px; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); }
+
+/* Barra lateral (tablet e computador) */
+.sidebar { display: none; }
+
+@media (min-width: 768px) {
+  .tabbar { display: none; }
+  .shell { display: grid; grid-template-columns: 84px 1fr; }
+  .main { padding: var(--space-6) var(--gutter) var(--space-10); }
+  .sidebar {
+    display: flex; flex-direction: column; gap: 4px; position: sticky; top: 0; height: 100dvh;
+    padding: var(--space-6) var(--space-3); background: var(--surface); border-right: 1px solid var(--line);
+  }
+  .logoFull { display: none; }
+  .navLabel { display: none; }
+  .item { justify-content: center; }
+  .perfilText { display: none; }
+}
+@media (min-width: 1200px) {
+  .shell { grid-template-columns: var(--sidebar-w) 1fr; }
+  .sidebar { padding: var(--space-6) var(--space-4); }
+  .logoFull { display: block; }
+  .logoMark { display: none; }
+  .navLabel { display: inline; }
+  .item { justify-content: flex-start; }
+  .perfilText { display: grid; }
+}
+.logo { padding: 0 8px var(--space-5); display: flex; justify-content: center; }
+@media (min-width: 1200px) { .logo { justify-content: flex-start; } }
+.item {
+  display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 10px 0 6px; border-radius: 12px;
+  font-size: 14px; font-weight: 500; color: var(--ink-muted);
+}
+.item:hover { background: var(--surface-muted); color: var(--ink); }
+.itemOn { background: var(--surface-muted); color: var(--ink); font-weight: 600; }
+.itemIcon { width: 32px; height: 32px; border-radius: 16px; display: grid; place-items: center; flex-shrink: 0; }
+.itemOn .itemIcon { background: var(--accent); color: var(--on-accent); }
+.spacer { flex-grow: 1; }
+.perfil { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); }
+.perfilText { gap: 0; flex-grow: 1; min-width: 0; }
+.perfilText b { font-size: 14px; }
+.perfilText span { font-size: 12px; color: var(--ink-muted); }

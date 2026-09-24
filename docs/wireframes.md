@@ -1,5 +1,7 @@
 # Domu: wireframes e navegação
 
+> Os wireframes vieram antes de duas decisões: o login passou a ser por e-mail e senha (com criar conta e recuperar senha) e o WhatsApp saiu do produto. O front em `src/` já segue as decisões novas.
+
 Protótipo clicável: https://claude.ai/artifact/5sxFsJay9Af5hzSo76o3xy
 
 O canvas tem o site de marketing (1440 px e celular), o app web no celular (390 px) e as telas principais no computador (1440 px). As regras de cada largura estão em `docs/estrutura-funcional.md`, seção 1.
@@ -26,17 +28,17 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Pino: R$ 680 | fica na tela |
 | Pino: R$ 280 | fica na tela |
 | Pino de post da vitrine | fica na tela |
-| Preços: Começar grátis | Entrar com WhatsApp |
+| Preços: Começar grátis | Entrar |
 | Preços: Quero receber pedidos | Site · para prestadores |
 | Preços: Buscar um serviço | Site · busca pública (SEO) |
-| Começar grátis | Entrar com WhatsApp |
+| Começar grátis | Entrar |
 | Site: Encontrar prestador | Site · busca pública (SEO) |
 | Site: Para corretores | Site · para corretores |
 | Site: Para prestadores | Site · para prestadores |
 | Site: Como funciona | Site · página inicial |
 | Site: página inicial | Site · página inicial |
-| Site: Entrar | Entrar com WhatsApp |
-| Site: Começar grátis | Entrar com WhatsApp |
+| Site: Entrar | Entrar |
+| Site: Começar grátis | Entrar |
 | Rodapé: Para corretores | Site · para corretores |
 | Rodapé: Para prestadores | Site · para prestadores |
 | Rodapé: Encontrar prestador | Site · busca pública (SEO) |
@@ -54,18 +56,18 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 
 | Botão | Leva para |
 | --- | --- |
-| Começar grátis | Entrar com WhatsApp |
+| Começar grátis | Entrar |
 | Ver o painel | Painel do corretor · computador |
-| Plano: Começo | Entrar com WhatsApp |
-| Plano: Por imóvel | Entrar com WhatsApp |
-| Plano: Carteira | Entrar com WhatsApp |
+| Plano: Começo | Entrar |
+| Plano: Por imóvel | Entrar |
+| Plano: Carteira | Entrar |
 | Site: Encontrar prestador | Site · busca pública (SEO) |
 | Site: Para corretores | Site · para corretores |
 | Site: Para prestadores | Site · para prestadores |
 | Site: Como funciona | Site · página inicial |
 | Site: página inicial | Site · página inicial |
-| Site: Entrar | Entrar com WhatsApp |
-| Site: Começar grátis | Entrar com WhatsApp |
+| Site: Entrar | Entrar |
+| Site: Começar grátis | Entrar |
 | Rodapé: Para corretores | Site · para corretores |
 | Rodapé: Para prestadores | Site · para prestadores |
 | Rodapé: Encontrar prestador | Site · busca pública (SEO) |
@@ -83,15 +85,15 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 
 | Botão | Leva para |
 | --- | --- |
-| Quero receber pedidos | Entrar com WhatsApp |
-| Quero o destaque | Entrar com WhatsApp |
+| Quero receber pedidos | Entrar |
+| Quero o destaque | Entrar |
 | Site: Encontrar prestador | Site · busca pública (SEO) |
 | Site: Para corretores | Site · para corretores |
 | Site: Para prestadores | Site · para prestadores |
 | Site: Como funciona | Site · página inicial |
 | Site: página inicial | Site · página inicial |
-| Site: Entrar | Entrar com WhatsApp |
-| Site: Começar grátis | Entrar com WhatsApp |
+| Site: Entrar | Entrar |
+| Site: Começar grátis | Entrar |
 | Rodapé: Para corretores | Site · para corretores |
 | Rodapé: Para prestadores | Site · para prestadores |
 | Rodapé: Encontrar prestador | Site · busca pública (SEO) |
@@ -115,9 +117,9 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Filtro: Nota 4,5+ | fica na tela |
 | Filtro: Bairro | fica na tela |
 | Ver perfil de João Batista | Site · perfil público do prestador |
-| Pedir orçamento a João Batista | Entrar com WhatsApp |
+| Pedir orçamento a João Batista | Entrar |
 | Ver perfil de Carlos Souza | Site · perfil público do prestador |
-| Pedir orçamento a Carlos Souza | Entrar com WhatsApp |
+| Pedir orçamento a Carlos Souza | Entrar |
 | Pino: R$ 80 | fica na tela |
 | Pino: R$ 90 | fica na tela |
 | Pino: R$ 120 | fica na tela |
@@ -128,8 +130,8 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Site: Para prestadores | Site · para prestadores |
 | Site: Como funciona | Site · página inicial |
 | Site: página inicial | Site · página inicial |
-| Site: Entrar | Entrar com WhatsApp |
-| Site: Começar grátis | Entrar com WhatsApp |
+| Site: Entrar | Entrar |
+| Site: Começar grátis | Entrar |
 | Busca: Eletricista | Site · busca pública (SEO) |
 | Busca: Pintor | Site · busca pública (SEO) |
 | Busca: Diarista | Site · busca pública (SEO) |
@@ -157,15 +159,15 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Aba: Avaliações | fica na tela |
 | Aba: Sobre | fica na tela |
 | Abrir post do portfólio | Detalhe do post |
-| Pedir orçamento | Entrar com WhatsApp |
+| Pedir orçamento | Entrar |
 | Compartilhar perfil | fica na tela |
 | Site: Encontrar prestador | Site · busca pública (SEO) |
 | Site: Para corretores | Site · para corretores |
 | Site: Para prestadores | Site · para prestadores |
 | Site: Como funciona | Site · página inicial |
 | Site: página inicial | Site · página inicial |
-| Site: Entrar | Entrar com WhatsApp |
-| Site: Começar grátis | Entrar com WhatsApp |
+| Site: Entrar | Entrar |
+| Site: Começar grátis | Entrar |
 | Rodapé: Para corretores | Site · para corretores |
 | Rodapé: Para prestadores | Site · para prestadores |
 | Rodapé: Encontrar prestador | Site · busca pública (SEO) |
@@ -184,7 +186,7 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Botão | Leva para |
 | --- | --- |
 | Site: página inicial | Site · página inicial no celular |
-| Site: Entrar | Entrar com WhatsApp |
+| Site: Entrar | Entrar |
 | Abrir menu | fica na tela |
 | Sou corretor ou proprietário | Site · para corretores |
 | Preciso de um serviço | Site · busca pública (SEO) |
@@ -192,7 +194,7 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Site: Inquilino | Site · página inicial no celular |
 | Site: Prestador | Site · para prestadores |
 | Explorar a vitrine | Site · busca pública (SEO) |
-| Começar grátis | Entrar com WhatsApp |
+| Começar grátis | Entrar |
 | Rodapé: Corretores | Site · para corretores |
 | Rodapé: Prestadores | Site · para prestadores |
 | Rodapé: Buscar | Site · busca pública (SEO) |
@@ -203,10 +205,10 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 
 | Botão | Leva para |
 | --- | --- |
-| Começar | Entrar com WhatsApp |
-| Já tenho conta | Entrar com WhatsApp |
+| Começar | Entrar |
+| Já tenho conta | Entrar |
 
-### Entrar com WhatsApp (`Entrar`)
+### Entrar (`Entrar`)
 
 | Botão | Leva para |
 | --- | --- |
@@ -218,7 +220,7 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 
 | Botão | Leva para |
 | --- | --- |
-| Voltar | Entrar com WhatsApp |
+| Voltar | Entrar |
 | Sou corretor ou proprietário | Painel do corretor |
 | Sou prestador de serviço | Pedidos do prestador |
 | Sou cliente | Explorar · lista (vitrine) |
@@ -319,7 +321,7 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | --- | --- |
 | Voltar | Explorar · lista (vitrine) |
 | Salvar | fica na tela |
-| Compartilhar no WhatsApp | fica na tela |
+| Compartilhar | fica na tela |
 | Abrir perfil do prestador | Perfil do prestador |
 | Ver 3 comentários | fica na tela |
 | Quero um serviço assim | Pedido de serviço |
@@ -723,7 +725,7 @@ Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um cont
 | Botão | Leva para |
 | --- | --- |
 | Voltar | Link do inquilino |
-| Falar com o corretor no WhatsApp | fica na tela |
+| Falar com o corretor | fica na tela |
 
 ## Comum
 

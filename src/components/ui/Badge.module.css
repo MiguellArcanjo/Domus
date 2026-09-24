@@ -1,0 +1,17 @@
+.badge {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-size: 12px; line-height: 16px; font-weight: 600; padding: 3px var(--space-2);
+  border-radius: var(--radius-sm); white-space: nowrap;
+}
+.neutral { background: var(--neutral-bg); color: var(--neutral); }
+.info { background: var(--info-bg); color: var(--info); }
+.success { background: var(--success-bg); color: var(--success); }
+.warning { background: var(--warning-bg); color: var(--warning); }
+.danger { background: var(--danger-bg); color: var(--danger); }
+.accent { background: var(--accent); color: var(--on-accent); }
+.selo {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-size: 12px; line-height: 16px; font-weight: 600; padding: 3px var(--space-2) 3px 6px;
+  border-radius: var(--radius-pill); background: var(--brand-soft); color: var(--on-brand-soft); white-space: nowrap;
+}
+.seloIcon { color: var(--brand); display: inline-flex; }

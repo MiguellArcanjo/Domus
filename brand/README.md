@@ -16,7 +16,7 @@ Design system publicado: https://claude.ai/artifact/XsY4QrX5VgpoGkrG7swkmP
 
 Para usar os componentes, carregue a fonte Geist (pacote `geist`), depois `tokens/tokens.css`, `componentes/bundle.css`, React 18 e `componentes/bundle.js`. Os nomes das variáveis são os mesmos do design system publicado (`--bg`, `--brand`, `--ink`…).
 
-Domu junta a gestão de aluguel com um marketplace de manutenção residencial. Serve quatro pessoas: o corretor ou pequeno proprietário, que paga a assinatura; o inquilino, que abre chamados por um link no WhatsApp sem baixar o app; o prestador (eletricista, encanador, pintor, diarista); e o cliente avulso, que procura um serviço. O nome vem do latim *domus*, casa. A assinatura é **Aluguel em dia. Casa em ordem.**
+Domu junta a gestão de aluguel com um marketplace de manutenção residencial. Serve quatro pessoas: o corretor ou pequeno proprietário, que paga a assinatura; o inquilino, que abre chamados pelo link do contrato, sem baixar o app; o prestador (eletricista, encanador, pintor, diarista); e o cliente avulso, que procura um serviço. O nome vem do latim *domus*, casa. A assinatura é **Aluguel em dia. Casa em ordem.**
 
 ## Voz e texto
 
