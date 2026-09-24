@@ -2,6 +2,8 @@
 
 Protótipo clicável: https://claude.ai/artifact/5sxFsJay9Af5hzSo76o3xy
 
+O canvas tem o site de marketing (1440 px e celular), o app web no celular (390 px) e as telas principais no computador (1440 px). As regras de cada largura estão em `docs/estrutura-funcional.md`, seção 1.
+
 Cada tela, o que ela tem e para onde cada botão leva. "Fica na tela" é um controle que age ali mesmo (filtro, aba, curtir). O código das telas vem de `docs/estrutura-funcional.md`.
 
 ## Site
