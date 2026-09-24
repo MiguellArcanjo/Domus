@@ -54,7 +54,7 @@ export default async function PerfilPublico({ params }: Props) {
           <h2 style={{ fontSize: 22 }}>Preços</h2>
           <PriceList itens={p.precos} />
           <p style={{ display: 'flex', gap: 8, fontSize: 13 }}><ShieldCheck size={20} color="var(--brand)" aria-hidden style={{ flexShrink: 0 }} />Pagamento protegido: o valor só vai para {p.nome.split(' ')[0]} depois que você confirmar.</p>
-          <Button variant="primary" block href={`/entrar?proximo=/app/contratar/${p.slug}`}>Pedir orçamento</Button>
+          <Button variant="primary" block href={`/baixar?prestador=${p.slug}`}>Pedir orçamento</Button>
           <ShareButton titulo={`${p.nome} no Domu`} />
         </aside>
       </div>

@@ -1,5 +1,7 @@
 # Domu: wireframes e navegação
 
+> **Atualização:** as telas de operação destes wireframes agora estão no **app mobile** (repositório `domu-mobile`). No site ficaram conta, assinatura, destaque e relatórios. Veja `docs/web-vs-app.md`.
+>
 > Os wireframes vieram antes de duas decisões: o login passou a ser por e-mail e senha (com criar conta e recuperar senha) e o WhatsApp saiu do produto. O front em `src/` já segue as decisões novas.
 
 Protótipo clicável: https://claude.ai/artifact/5sxFsJay9Af5hzSo76o3xy

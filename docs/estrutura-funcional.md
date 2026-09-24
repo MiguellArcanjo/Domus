@@ -1,5 +1,7 @@
 # Domu: estrutura funcional
 
+> **Atualização:** a operação do dia a dia agora fica no **app mobile** (repositório `domu-mobile`). O site ficou com conta, assinatura, destaque, relatórios e o básico de cada perfil. A divisão está em `docs/web-vs-app.md`.
+>
 > O front está implementado em `src/`. O que o backend precisa entregar, tela por tela, está em `docs/backend.md`. Decisão posterior aos wireframes: login por e-mail e senha, e nada de WhatsApp.
 
 Este documento lista o que o sistema faz, onde cada função aparece e quais componentes vamos construir, antes de escrever código. Os IDs (G-01, M-07, V-02…) são os mesmos do PRD.

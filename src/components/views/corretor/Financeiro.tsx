@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ChevronRight, Send } from 'lucide-react'
+import { ChevronRight, Download } from 'lucide-react'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -17,18 +17,33 @@ import { reais } from '@/lib/format'
 import { COBRANCAS, REGUA_ATRASO, REPASSES, RESUMO_MES, imovel } from '@/lib/mock'
 import type { Cobranca } from '@/lib/mock/financeiro'
 
-export function tomCobranca(c: Cobranca) {
+function tomCobranca(c: Cobranca) {
   return c.situacao === 'paga' ? { tom: 'success' as const, rotulo: `Paga em ${c.pagaEm}` } : c.situacao === 'vencida' ? { tom: 'danger' as const, rotulo: `${c.diasAtraso} dias de atraso` } : { tom: 'info' as const, rotulo: `Vence ${c.vencimento}` }
 }
 
-/** Financeiro do corretor: cobranças (G-10), repasses (G-11) e régua de atraso. */
+/** Baixa as cobranças do mês em CSV (abre no Excel e no Google Planilhas). Com backend: GET /relatorios/cobrancas.csv. */
+function exportarCsv() {
+  const linhas = [['Imóvel', 'Inquilino', 'Mês', 'Valor', 'Vencimento', 'Situação', 'Pago em', 'Forma']]
+  COBRANCAS.forEach((c) => linhas.push([imovel(c.imovelId)?.nome ?? '', c.inquilino, c.mes, String(c.valor).replace('.', ','), c.vencimento, c.situacao, c.pagaEm ?? '', c.forma ?? '']))
+  const csv = '\uFEFF' + linhas.map((l) => l.map((v) => `"${v.replace(/"/g, '""')}"`).join(';')).join('\n')
+  const a = document.createElement('a')
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }))
+  a.download = 'domu-cobrancas.csv'
+  a.click()
+  URL.revokeObjectURL(a.href)
+}
+
+/**
+ * Relatórios do corretor no site: cobranças (só leitura, com exportação), extratos de repasse e régua de atraso.
+ * Cobrar, marcar como paga e lembrar o inquilino ficam no app.
+ */
 export function Financeiro() {
   const toast = useToast()
   const [mes, setMes] = useState<string | undefined>('set')
   const [regua, setRegua] = useState(REGUA_ATRASO)
   return (
     <Stack gap={4} style={{ maxWidth: 900 }}>
-      <PageHeader title="Financeiro" actions={<DropdownChip label="Mês" value={mes} onChange={setMes} placeholder="Todos os meses" options={[{ value: 'set', label: 'Setembro' }, { value: 'ago', label: 'Agosto' }, { value: 'jul', label: 'Julho' }]} />} />
+      <PageHeader title="Relatórios" actions={<DropdownChip label="Mês" value={mes} onChange={setMes} placeholder="Todos os meses" options={[{ value: 'set', label: 'Setembro' }, { value: 'ago', label: 'Agosto' }, { value: 'jul', label: 'Julho' }]} />} />
       <KpiCard mes={RESUMO_MES.mes} valor={RESUMO_MES.aReceber} pagos={RESUMO_MES.pagos} total={RESUMO_MES.total} emAtraso={RESUMO_MES.emAtraso} />
       <TabPanels label="Financeiro" tabs={['Cobranças', 'Repasses', 'Régua de atraso']}>
         {[
@@ -36,12 +51,12 @@ export function Financeiro() {
             {COBRANCAS.map((c) => {
               const t = tomCobranca(c)
               return (
-                <Card key={c.id} href={`/app/financeiro/cobrancas/${c.id}`}>
+                <Card key={c.id}>
                   <Row between><div><b style={{ fontSize: 15 }}>{imovel(c.imovelId)?.nome.split(' · ')[0]} · {c.inquilino}</b><p style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{c.mes} · {c.forma ?? 'Pix ou boleto'}</p></div><div style={{ display: 'grid', justifyItems: 'end', gap: 4 }}><b className="tabular">{reais(c.valor)}</b><Badge tone={t.tom}>{t.rotulo}</Badge></div></Row>
                 </Card>
               )
             })}
-            <Button icon={Send} onClick={() => toast('Lembrete enviado para 2 inquilinos')}>Lembrar quem ainda não pagou</Button>
+            <Button icon={Download} onClick={() => { exportarCsv(); toast('Planilha baixada') }}>Baixar planilha (CSV)</Button>
           </Stack>,
           <Stack key="rep" gap={3}>
             {REPASSES.map((r) => (

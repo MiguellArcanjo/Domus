@@ -37,11 +37,11 @@ export default async function PostPublico({ params }: Props) {
           <p style={{ fontSize: 17 }}>{po.descricao}</p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
             <b style={{ fontSize: 24 }} className="tabular">{reais(po.preco)}</b>
-            <Button variant="primary" href={`/entrar?proximo=/app/contratar/${p.slug}?post=${po.id}`}>Quero um serviço assim</Button>
+            <Button variant="primary" href={`/baixar?prestador=${p.slug}`}>Quero um serviço assim</Button>
             <ShareButton titulo={po.titulo} />
           </div>
         </div>
-        <PrestadorCard p={p} href={`/p/${p.slug}`} ctaHref={`/entrar?proximo=/app/contratar/${p.slug}`} />
+        <PrestadorCard p={p} href={`/p/${p.slug}`} ctaHref={`/baixar?prestador=${p.slug}`} />
       </div>
     </Section>
   )

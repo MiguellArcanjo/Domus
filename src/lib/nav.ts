@@ -1,6 +1,4 @@
-import {
-  CalendarDays, ClipboardList, FileText, House, Inbox, KeyRound, Map, MessageCircle, Plus, Bookmark, Store, User, Users, Wallet, type LucideIcon,
-} from 'lucide-react'
+import { ClipboardList, CreditCard, FileBarChart, House, MapPin, Sparkles, Store, User, Wallet, type LucideIcon } from 'lucide-react'
 import type { Perfil } from './types'
 
 export interface ItemNav {
@@ -11,40 +9,36 @@ export interface ItemNav {
   soLateral?: boolean
 }
 
-/** Navegação de cada perfil. No celular vira a barra de abas; no computador, a barra lateral. */
+/**
+ * Navegação do site com login (versão reduzida). No celular vira a barra de abas; no computador, a barra lateral.
+ * A operação do dia a dia (imóveis, chamados, pedidos, agenda, explorar, mensagens...) fica no app mobile.
+ */
 export const NAV: Record<Perfil, ItemNav[]> = {
   corretor: [
     { href: '/app/painel', rotulo: 'Início', icone: House },
-    { href: '/app/imoveis', rotulo: 'Imóveis', icone: KeyRound },
-    { href: '/app/chamados', rotulo: 'Chamados', icone: Inbox },
-    { href: '/app/explorar', rotulo: 'Explorar', icone: Map },
-    { href: '/app/contratos', rotulo: 'Contratos', icone: FileText, soLateral: true },
-    { href: '/app/financeiro', rotulo: 'Financeiro', icone: Wallet, soLateral: true },
-    { href: '/app/meus-prestadores', rotulo: 'Prestadores', icone: Users, soLateral: true },
-    { href: '/app/conta', rotulo: 'Perfil', icone: User },
+    { href: '/app/financeiro', rotulo: 'Relatórios', icone: FileBarChart },
+    { href: '/app/assinatura', rotulo: 'Assinatura', icone: CreditCard },
+    { href: '/app/conta', rotulo: 'Conta', icone: User },
   ],
   prestador: [
-    { href: '/app/pedidos', rotulo: 'Pedidos', icone: Inbox },
-    { href: '/app/agenda', rotulo: 'Agenda', icone: CalendarDays },
-    { href: '/app/postar', rotulo: 'Postar', icone: Plus },
+    { href: '/app/painel', rotulo: 'Início', icone: House },
     { href: '/app/carteira', rotulo: 'Carteira', icone: Wallet },
-    { href: '/app/mensagens', rotulo: 'Mensagens', icone: MessageCircle, soLateral: true },
-    { href: '/app/meu-perfil', rotulo: 'Meu perfil', icone: Store, soLateral: true },
-    { href: '/app/conta', rotulo: 'Perfil', icone: User },
+    { href: '/app/destaque', rotulo: 'Destaque', icone: Sparkles },
+    { href: '/app/meu-perfil', rotulo: 'Perfil público', icone: Store, soLateral: true },
+    { href: '/app/conta', rotulo: 'Conta', icone: User },
   ],
   cliente: [
-    { href: '/app/explorar', rotulo: 'Explorar', icone: Map },
+    { href: '/app/painel', rotulo: 'Início', icone: House },
     { href: '/app/meus-pedidos', rotulo: 'Pedidos', icone: ClipboardList },
-    { href: '/app/mensagens', rotulo: 'Mensagens', icone: MessageCircle },
-    { href: '/app/salvos', rotulo: 'Salvos', icone: Bookmark },
-    { href: '/app/conta', rotulo: 'Perfil', icone: User },
+    { href: '/app/enderecos', rotulo: 'Endereços', icone: MapPin, soLateral: true },
+    { href: '/app/conta', rotulo: 'Conta', icone: User },
   ],
 }
 
 export const INICIO: Record<Perfil, string> = {
   corretor: '/app/painel',
-  prestador: '/app/pedidos',
-  cliente: '/app/explorar',
+  prestador: '/app/painel',
+  cliente: '/app/painel',
 }
 
 export const PERFIS: Record<Perfil, { rotulo: string; descricao: string }> = {

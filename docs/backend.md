@@ -1,6 +1,8 @@
 # Domu: o que o backend precisa entregar
 
-O front está **completo** e roda só com **dados de exemplo**: 86 rotas, com todos os botões ligados. Este documento diz, tela por tela, o que o backend precisa fornecer: dados, ações, regras e permissões. Os IDs (G-01, M-07, V-02…) são os do PRD.
+O front está **completo** e roda só com **dados de exemplo**, com todos os botões ligados. Este documento diz, tela por tela, o que o backend precisa fornecer: dados, ações, regras e permissões. Os IDs (G-01, M-07, V-02…) são os do PRD.
+
+> **Site e app mobile.** A operação do dia a dia (imóveis, chamados, pedidos, explorar, contratar, mensagens, vistorias…) passou para o **app mobile** (repositório `domu-mobile`, com o próprio `docs/backend-mobile.md`). O site ficou com o marketing, a entrada, a **conta, a assinatura, o destaque e os relatórios**, o link do inquilino e a área da operação. As telas da seção 4 continuam valendo como contrato de API; a coluna de rotas `/app/...` que saiu do site aparece no app com o nome dado em `docs/web-vs-app.md`. **Assinatura, planos, destaque e faturas só são chamados pelo site.**
 
 - Front: Next.js 16 (App Router), em `src/`. Rotas em `src/app`, componentes em `src/components`.
 - Dados de exemplo: `src/lib/mock/*.ts`. Tipos do domínio: `src/lib/types.ts`.

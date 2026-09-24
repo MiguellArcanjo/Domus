@@ -9,7 +9,7 @@ import { RadioList } from '@/components/ui/Controls'
 import { Confirm, useToast } from '@/components/ui/Dialog'
 import { Row, Stack } from '@/components/ui/Stack'
 import { PrestadorCard } from '@/components/domain/Prestador'
-import { BackBar } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { EU_PRESTADOR, prestador } from '@/lib/mock'
 import { useLocal } from '@/lib/store'
 
@@ -21,7 +21,7 @@ export function Destaque() {
   const p = prestador(EU_PRESTADOR)!
   return (
     <Stack gap={4} style={{ maxWidth: 640 }}>
-      <BackBar title="Destaque" back="/app/conta" />
+      <PageHeader title="Destaque" />
       <Card tone={ativo ? 'soft' : 'default'}>
         <Row between><b style={{ fontSize: 18 }}>Destaque na região</b>{ativo ? <Badge tone="success">Ativo</Badge> : <Badge>Desligado</Badge>}</Row>
         <div style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em' }}>R$ 39<span style={{ fontSize: 15, fontWeight: 500, color: 'var(--ink-muted)' }}> /mês</span></div>
@@ -42,6 +42,7 @@ export function Destaque() {
           <Button variant="primary" block onClick={() => { setAtivo(true); toast('Destaque ativado') }}>Ativar destaque por R$ 39/mês</Button>
         </>
       )}
+      <p style={{ fontSize: 13, color: 'var(--ink-muted)' }}>O destaque é contratado e cancelado só aqui no site. No app ele aparece no seu card automaticamente.</p>
       <Confirm open={cancelar} onClose={() => setCancelar(false)} onConfirm={() => { setAtivo(false); toast('Destaque cancelado') }} title="Cancelar o destaque?" description="Ele continua até o fim do mês já pago." confirmar="Cancelar destaque" perigo />
     </Stack>
   )

@@ -3,48 +3,39 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
-  BadgeCheck, Bell, Bookmark, CalendarRange, ChevronRight, CircleHelp, ClipboardCheck, CreditCard, FileText, KeyRound, Lock, LogOut,
-  MapPin, MessageCircle, Repeat, Sparkles, Store, User, Users, Wallet, type LucideIcon,
+  Bell, ChevronRight, CircleHelp, ClipboardList, CreditCard, FileBarChart, KeyRound, Landmark, Lock, LogOut, MapPin, Sparkles, Store, User, Wallet, type LucideIcon,
 } from 'lucide-react'
 import { Avatar } from '@/components/ui/Avatar'
 import { Card } from '@/components/ui/Card'
 import { Confirm, useToast } from '@/components/ui/Dialog'
 import { Eyebrow } from '@/components/ui/Meta'
 import { Row, Stack } from '@/components/ui/Stack'
+import { BaixarApp } from '@/components/layout/BaixarApp'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { PerfilOpcao } from '@/components/layout/PerfilOpcao'
 import { usePerfil } from '@/components/layout/PerfilProvider'
 import { USUARIO } from '@/lib/mock'
 import { INICIO } from '@/lib/nav'
-import { useLocal } from '@/lib/store'
 import type { Perfil } from '@/lib/types'
 import { useState } from 'react'
 
 type Item = { icone: LucideIcon; rotulo: string; href: string }
 
-/** Atalhos de cada perfil (no celular é daqui que se chega às telas que não cabem na barra de abas). */
+/** O que cada perfil gerencia pelo site: assinatura, destaque, relatórios e recebimento. O resto fica no app. */
 const DO_PERFIL: Record<Perfil, { titulo: string; itens: Item[] }> = {
-  corretor: { titulo: 'Sua carteira', itens: [
-    { icone: Wallet, rotulo: 'Financeiro: cobranças e repasses', href: '/app/financeiro' },
-    { icone: FileText, rotulo: 'Contratos', href: '/app/contratos' },
-    { icone: Repeat, rotulo: 'Reajustes', href: '/app/reajustes' },
-    { icone: ClipboardCheck, rotulo: 'Vistorias', href: '/app/vistorias' },
-    { icone: Users, rotulo: 'Meus prestadores', href: '/app/meus-prestadores' },
-    { icone: CreditCard, rotulo: 'Assinatura', href: '/app/assinatura' },
+  corretor: { titulo: 'Assinatura e relatórios', itens: [
+    { icone: CreditCard, rotulo: 'Assinatura, cartão e faturas', href: '/app/assinatura' },
+    { icone: FileBarChart, rotulo: 'Relatórios: cobranças e repasses', href: '/app/financeiro' },
   ] },
   prestador: { titulo: 'Seu negócio', itens: [
-    { icone: Store, rotulo: 'Meu perfil público', href: '/app/meu-perfil' },
-    { icone: Wallet, rotulo: 'Meus preços', href: '/app/meus-precos' },
-    { icone: BadgeCheck, rotulo: 'Verificação', href: '/app/verificacao' },
-    { icone: Sparkles, rotulo: 'Destaque', href: '/app/destaque' },
-    { icone: CreditCard, rotulo: 'Dados de recebimento', href: '/app/carteira/recebimento' },
-    { icone: MessageCircle, rotulo: 'Mensagens', href: '/app/mensagens' },
-    { icone: CalendarRange, rotulo: 'Refazer cadastro', href: '/app/cadastro-prestador' },
+    { icone: Sparkles, rotulo: 'Destaque na região', href: '/app/destaque' },
+    { icone: Wallet, rotulo: 'Carteira e saques', href: '/app/carteira' },
+    { icone: Landmark, rotulo: 'Dados de recebimento (Pix)', href: '/app/carteira/recebimento' },
+    { icone: Store, rotulo: 'Perfil público', href: '/app/meu-perfil' },
   ] },
   cliente: { titulo: 'Seus serviços', itens: [
-    { icone: MessageCircle, rotulo: 'Mensagens', href: '/app/mensagens' },
+    { icone: ClipboardList, rotulo: 'Pedidos e recibos', href: '/app/meus-pedidos' },
     { icone: MapPin, rotulo: 'Endereços', href: '/app/enderecos' },
-    { icone: Bookmark, rotulo: 'Salvos e seguindo', href: '/app/salvos' },
   ] },
 }
 
@@ -71,15 +62,14 @@ export function ContaView() {
   const router = useRouter()
   const toast = useToast()
   const { perfil, setPerfil } = usePerfil()
-  const [prestadorCadastrado] = useLocal('prestadorCadastrado', false)
   const [sair, setSair] = useState(false)
   const trocar = (p: Perfil) => {
     setPerfil(p)
-    router.push(p === 'prestador' && !prestadorCadastrado ? '/app/cadastro-prestador' : INICIO[p])
+    router.push(INICIO[p])
   }
   return (
     <Stack gap={4} style={{ maxWidth: 640 }}>
-      <PageHeader title="Perfil" />
+      <PageHeader title="Conta" />
       <Card href="/app/conta/dados"><Row gap={3}><Avatar iniciais={USUARIO.iniciais} size={56} /><div style={{ flexGrow: 1 }}><b style={{ fontSize: 17 }}>{USUARIO.nome}</b><p style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{USUARIO.email}</p></div><ChevronRight size={18} color="var(--ink-muted)" aria-hidden /></Row></Card>
       <Eyebrow as="h2">{DO_PERFIL[perfil].titulo}</Eyebrow>
       <Lista itens={DO_PERFIL[perfil].itens} />
@@ -87,6 +77,7 @@ export function ContaView() {
       <Stack gap={2}>{(['corretor', 'prestador', 'cliente'] as Perfil[]).map((p) => <PerfilOpcao key={p} perfil={p} ativo={perfil === p} onClick={() => trocar(p)} />)}</Stack>
       <Eyebrow as="h2">Conta</Eyebrow>
       <Lista itens={CONTA} />
+      <BaixarApp perfil={perfil} />
       <button type="button" onClick={() => setSair(true)} style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--danger)', fontWeight: 600, padding: '12px 0', background: 'none', border: 0 }}><LogOut size={18} aria-hidden />Sair</button>
       <Confirm open={sair} onClose={() => setSair(false)} onConfirm={() => { toast('Você saiu da conta'); router.push('/entrar') }} title="Sair da conta?" confirmar="Sair" />
     </Stack>

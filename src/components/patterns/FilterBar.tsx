@@ -28,7 +28,7 @@ export function passaFiltros(p: Prestador, f: Filtros) {
 }
 
 /** Filtros compartilhados pela lista e pelo mapa (referência Event Discovery). */
-export function FilterBar({ value, onChange, buscaHref = '/app/busca' }: { value: Filtros; onChange: (f: Filtros) => void; buscaHref?: string }) {
+export function FilterBar({ value, onChange, buscaHref = '/buscar' }: { value: Filtros; onChange: (f: Filtros) => void; buscaHref?: string }) {
   const [abrirCat, setAbrirCat] = useState(false)
   return (
     <div style={{ display: 'grid', gap: 8 }}>

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { CircleCheck, MessageCircle, ShieldCheck } from 'lucide-react'
+import { CircleCheck, ShieldCheck } from 'lucide-react'
 import { Avatar } from '@/components/ui/Avatar'
-import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
-import { IconButton } from '@/components/ui/IconButton'
 import { Row, Stack } from '@/components/ui/Stack'
 import { Steps } from '@/components/ui/Steps'
-import { BackBar, StickyActions } from '@/components/layout/PageHeader'
+import { BackBar } from '@/components/layout/PageHeader'
+import { BaixarApp } from '@/components/layout/BaixarApp'
+import { Imprimir } from '@/components/ui/Imprimir'
 import { reais } from '@/lib/format'
 import { PEDIDOS_CLIENTE, pedidoCliente, prestador } from '@/lib/mock'
 
@@ -35,15 +35,17 @@ export default async function Acompanhar({ params, searchParams }: Props) {
         <Row gap={3}>
           <Avatar iniciais={p.iniciais} size={44} />
           <div style={{ flexGrow: 1 }}><b>{p.nome}</b><p style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{ped.servico} · {reais(ped.valor)}</p></div>
-          <IconButton icon={MessageCircle} label="Conversar com o prestador" href={`/app/mensagens/${p.slug}`} />
         </Row>
       </Card>
       <Steps passos={PASSOS.map((t, i) => ({ titulo: t, detalhe: i === 2 ? ped.quando : ped.eventos[i]?.quando }))} atual={ATUAL[ped.estado]} />
       <Card><Row gap={2}><ShieldCheck size={20} color="var(--brand)" aria-hidden /><p style={{ fontSize: 14 }}>{reais(ped.valor)} guardados. Liberamos quando você confirmar.</p></Row></Card>
-      <StickyActions>
-        <Button variant="danger" href={`/app/meus-pedidos/${ped.id}/contestar`}>Contestar</Button>
-        <Button variant="primary" href={`/app/meus-pedidos/${ped.id}/avaliar`}>Confirmar serviço</Button>
-      </StickyActions>
+      <Card>
+        <b>Recibo</b>
+        <p style={{ fontSize: 14 }}>{ped.servico} · {reais(ped.valor, true)} · {ped.endereco}</p>
+        <p style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Pedido {ped.codigo} com {p.nome}. Pago pelo Domu.</p>
+        <div><Imprimir>Imprimir ou salvar PDF</Imprimir></div>
+      </Card>
+      <BaixarApp titulo="Confirmar, avaliar ou contestar" texto={`Fale com ${p.nome.split(' ')[0]}, confirme o serviço, avalie ou abra uma contestação pelo app Domu.`} />
     </Stack>
   )
 }

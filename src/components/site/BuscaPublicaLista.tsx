@@ -25,7 +25,7 @@ export function BuscaPublicaLista({ categoria }: { categoria: CategoriaId }) {
         <DropdownChip label="Nota" placeholder="Nota" value={f.notaMin} onChange={(v) => setF({ ...f, notaMin: v })} options={[{ value: '4.5', label: 'Nota 4,5+' }, { value: '4.8', label: 'Nota 4,8+' }]} />
         <DropdownChip label="Bairro" placeholder="Bairro" value={bairro} onChange={setBairro} options={BAIRROS.map((b) => ({ value: b, label: b }))} />
       </ChipRow>
-      {lista.map((p) => <PrestadorCard key={p.slug} p={p} href={`/p/${p.slug}`} ctaHref={`/entrar?proximo=/app/contratar/${p.slug}`} />)}
+      {lista.map((p) => <PrestadorCard key={p.slug} p={p} href={`/p/${p.slug}`} ctaHref={`/baixar?prestador=${p.slug}`} />)}
       {lista.length === 0 && <EmptyState icon={SearchX} title="Nenhum prestador com esses filtros">Tire um filtro ou veja outros serviços abaixo.</EmptyState>}
     </>
   )
